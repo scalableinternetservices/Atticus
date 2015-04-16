@@ -7,4 +7,10 @@ Atticus aggregates online clothing and merchandise on a central hub where users 
 Pivotal Tracker link:
 https://www.pivotaltracker.com/n/projects/1321150
 
+![alt tag](https://cloud.githubusercontent.com/assets/7041750/7172633/f5d73142-e39f-11e4-92b9-307cf0133528.jpg)
 
+Kenta Onimura
+
+Lawrence Yuan
+
+Walter Qian
