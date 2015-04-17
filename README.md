@@ -16,5 +16,5 @@ Kenta Onimura
 Lawrence Yuan
 
 
-![alt tag](https://raw.github.com/walterqian/test/11081043_10204869994088336_2044735327349170992_n.jpg)
+![alt tag](https://cloud.githubusercontent.com/assets/9376107/7212470/40e7e8e8-e51c-11e4-9b4a-845150143c38.jpg)
 Walter Qian
