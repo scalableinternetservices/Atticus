@@ -12,7 +12,7 @@ https://www.pivotaltracker.com/n/projects/1321150
 Kenta Onimura
 
 
-![alt tag](https://github.com/scalableinternetservices/Atticus/blob/master/lawrence.JPG)
+![alt tag](https://cloud.githubusercontent.com/assets/6827498/7212474/6bb38794-e51c-11e4-8dd0-89a120f5f6a4.JPG)
 Lawrence Yuan
 
 
