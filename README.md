@@ -11,7 +11,10 @@ https://www.pivotaltracker.com/n/projects/1321150
 
 Kenta Onimura
 
+
+![alt tag](https://raw.github.com/lawrence.jpg)
 Lawrence Yuan
+
 
 ![alt tag](https://raw.github.com/walterqian/test/11081043_10204869994088336_2044735327349170992_n.jpg)
 Walter Qian
