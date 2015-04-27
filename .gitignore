@@ -47,6 +47,7 @@ bower.json
 *#*
 # Ignore pow environment settings
 .powenv
+tags
 
 # Ignore emacs
 *~
