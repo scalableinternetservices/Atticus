@@ -3,11 +3,11 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 <%= devise_error_messages! %>
-
- <div class="field">
-    <%= f.label :company_or_student %><br />
-    <%= f.select :company_or_student, [["Company",1],["Student",0]] %>
-  </div> 
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -21,13 +21,20 @@
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-
+  
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div>
+      <%= f.radio_button :is_student, true %> <%= f.label :is_student, "Student" %> 
+  </div>
+  <div>
+      <%= f.radio_button :is_student, false %> <%= f.label :is_student, "Company" %>
+  </div>
 
+  <br/>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

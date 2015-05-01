@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :contracts
 
-  devise_for :users, :controllers => { registrations: 'registration' }
+  devise_for :users
 
   devise_scope :user do
     get "/login" => "devise/sessions#new"
