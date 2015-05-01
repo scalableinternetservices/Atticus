@@ -1,5 +1,9 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  
+  def each
+    super
+  end
 
   # GET /students
   # GET /students.json
