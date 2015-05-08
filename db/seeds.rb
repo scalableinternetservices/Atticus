@@ -13,7 +13,11 @@ Contract.create(title: 'Rails Master',
         We need a rockstar hero programmer
       },
   image_url: 'google.jpg',
-  pay: 300)
+  pay: 300,
+  progress: 0,
+  done: 0,
+  owner: 'larrypage@google.com',
+  worker: '')
 
 Contract.create(title: 'Django',
   company: 'Apple',
@@ -22,7 +26,12 @@ Contract.create(title: 'Django',
         MVC stuff
       },
   image_url: 'apple.jpg',
-  pay: 200)
+  pay: 200,
+  progress: 0,
+  done: 0,
+  owner: 'timcook@apple.com',
+  worker: ''
+)
 
 Contract.create(title: 'Hello World',
   company: 'Microsoft',
@@ -31,9 +40,15 @@ Contract.create(title: 'Hello World',
         We need a Windows person
       },
   image_url: 'windows.jpg',
-  pay: 100)
+  pay: 100,
+  progress: 0,
+  done: 0,
+  owner: 'steveballmer@microsoft.com',
+  worker: '')
 User.delete_all
-User.create(name: 'Google',
+User.create(first_name: 'larry',
+  last_name: 'page',
+  corporation: 'Google',
   email: 'google@gmail.com',
   password: 'googleAtticus',
   is_student: false

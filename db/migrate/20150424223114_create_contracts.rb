@@ -10,7 +10,6 @@ class CreateContracts < ActiveRecord::Migration
       t.boolean :done, default: false
       t.string :owner
       t.string :worker, default: ""
-
       t.timestamps null: false
     end
   end
