@@ -6,4 +6,5 @@ class Contract < ActiveRecord::Base
 		with: %r{\.(gif|jpg|png)\Z}i, 
 		message: 'must be a url for GIF, JPG, or PNG image.'
 	}
+    has_and_belongs_to_many :users
 end
