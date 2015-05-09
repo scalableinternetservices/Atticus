@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Profiles</h1>
+<h1>You are home!</h1>
 
 <table>
   <thead>
@@ -8,18 +7,39 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <tbody>
-    <% @profiles.each do |profile| %>
-      <tr>
-        <td><%= link_to 'Show', profile %></td>
-        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% if (current_user.is_student) %>
+  <h2>Contracts</h2>
+    <tbody>
+    <h2>Your contracts:</h2>
+    <% @contracts.each do |c| %>
+      <% if (c.progress == true) %>
+      <h3 class="contracttitle"><%=c.title%></h3>
+      <p class="contractcompany"><strong><%=c.company%></strong> is looking for a developer!</p>
+      <p class="contractdescription"><strong>Description:</strong> <%=c.description%></p>
+      <p class="contractpay"><strong>Pay:</strong> $<%=c.pay%></p>
+      <% end %>
     <% end %>
+    <h2>Other contracts:</h2>
+    <% @contracts.each do |c| %>
+      <% if (c.progress == false) %>
+      <h3 class="contracttitle"><%=c.title%></h3>
+      <p class="contractcompany"><strong><%=c.company%></strong> is looking for a developer!</p>
+      <p class="contractdescription"><strong>Description:</strong> <%=c.description%></p>
+      <p class="contractpay"><strong>Pay:</strong> $<%=c.pay%></p>
+      <%=link_to "See More"%>
+      <%=link_to "Accept Contract!"%>
+      <% end %>
+    <% end %>
+<% else %>
+  <h2>Users</h2>
+    <tbody>
+    <% @users.each do |p| %>
+      <% if (p.is_student) %>
+        <h3 class="name"><%=p.first_name %> <%=p.last_name %></h3>
+        <p class="school">School: <%=p.school %></p>
+      <% end %>
+    <%end%>
+<% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Profile', new_profile_path %>
