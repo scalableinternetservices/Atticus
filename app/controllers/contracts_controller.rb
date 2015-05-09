@@ -51,6 +51,17 @@ class ContractsController < ApplicationController
     end
   end
 
+  def add
+    respond_to do |format|
+        contract = Contract.find(params[:id])
+        current_user.contracts << contract
+        current_user.save!
+        @contracts = Contract.all
+        format.html {render :index, notice: "contract was successfully added"}
+    end
+  end
+
+
   # DELETE /contracts/1
   # DELETE /contracts/1.json
   def destroy
