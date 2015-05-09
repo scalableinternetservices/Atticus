@@ -11,7 +11,7 @@
   <h2>Contracts</h2>
     <tbody>
     <h2>Your contracts:</h2>
-    <% @contracts.each do |c| %>
+    <% current_user.contracts.each do |c| %>
       <% if (c.progress == true) %>
       <h3 class="contracttitle"><%=c.title%></h3>
       <p class="contractcompany"><strong><%=c.company%></strong> is looking for a developer!</p>
@@ -20,7 +20,7 @@
       <% end %>
     <% end %>
     <h2>Other contracts:</h2>
-    <% @contracts.each do |c| %>
+    <% current_user.contracts.each do |c| %>
       <% if (c.progress == false) %>
       <h3 class="contracttitle"><%=c.title%></h3>
       <p class="contractcompany"><strong><%=c.company%></strong> is looking for a developer!</p>

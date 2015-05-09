@@ -58,6 +58,7 @@ class ContractsController < ApplicationController
         current_user.save!
         @contracts = Contract.all
         format.html {render :index, notice: "contract was successfully added"}
+        format.json {render :show, status: :ok, location: @contract }
     end
   end
 
