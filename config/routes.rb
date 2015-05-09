@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'contracts/:id/add' => "contracts#add", as: :add_contract
   resources :profiles
   resources :contracts
 
