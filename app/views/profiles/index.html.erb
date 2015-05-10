@@ -8,37 +8,60 @@
     </tr>
   </thead>
 <% if (current_user.is_student) %>
-  <h2>Contracts</h2>
+  <h1>Contracts</h1>
     <tbody>
-    <h2>Your contracts:</h2>
+    <h2>Contracts in Progress</h2>
     <% current_user.contracts.each do |c| %>
-      <% if (c.progress == true) %>
+      <!-- TODO: Determine how worker will be stored, current email? -->
+      <% if (c.progress == true && contract.worker == current_user.email) %>
       <h3 class="contracttitle"><%=c.title%></h3>
       <p class="contractcompany"><strong><%=c.company%></strong> is looking for a developer!</p>
       <p class="contractdescription"><strong>Description:</strong> <%=c.description%></p>
       <p class="contractpay"><strong>Pay:</strong> $<%=c.pay%></p>
       <% end %>
     <% end %>
-    <h2>Other contracts:</h2>
+    <h2>Available contracts</h2>
     <% current_user.contracts.each do |c| %>
       <% if (c.progress == false) %>
       <h3 class="contracttitle"><%=c.title%></h3>
       <p class="contractcompany"><strong><%=c.company%></strong> is looking for a developer!</p>
       <p class="contractdescription"><strong>Description:</strong> <%=c.description%></p>
       <p class="contractpay"><strong>Pay:</strong> $<%=c.pay%></p>
-      <%=link_to "See More"%>
+      <%=link_to "See More", c%>
+      <br/>
       <%=link_to "Accept Contract!"%>
       <% end %>
     <% end %>
 <% else %>
   <h2>Users</h2>
-    <tbody>
-    <% @users.each do |p| %>
-      <% if (p.is_student) %>
-        <h3 class="name"><%=p.first_name %> <%=p.last_name %></h3>
-        <p class="school">School: <%=p.school %></p>
+  <tbody>
+    <h2>Contracts awaiting Approval</h2>
+    <% current_user.contracts.each do |p| %>
+    <% if (p.done == true) %>
+      <% p.users.each do |c| %>
+      <!-- TODO: Determine how worker will be stored, current email? -->
+          <% if (p.worker == c.email)  %>
+              <p><strong><%= c.first_name %></strong> is awaiting your approval.</p>
+              <br/>
+              <%= link_to "Approve and finish contract " %>
+          <% end %>
       <% end %>
+    <% end %>
     <%end%>
+
+    <h2> Pending Contracts </h2>
+    <% current_user.contracts.each do |p| %>
+    <% if (p.progress == false) %>
+      <% p.users.each do |c| %>
+          <% if (c.is_student) %>
+              <p><strong><%= c.first_name %></strong> is awaiting your acceptance.</p>
+              <br/>
+              <%= link_to "Approve Student" %>
+          <% end %>
+      <% end %>
+    <% end %>
+    <%end%>
+
 <% end %>
   </tbody>
 </table>
