@@ -16,6 +16,7 @@
   <% end %>
   <br/>
   <%= link_to 'Edit Account', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to 'Edit Profile', users_edit_profile_path, :class => 'navbar-link' %> |
   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 <% else %>
   <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
