@@ -29,7 +29,8 @@
       <p class="contractpay"><strong>Pay:</strong> $<%=c.pay%></p>
       <%=link_to "See More", c%>
       <br/>
-      <%=link_to "Accept Contract!"%>
+      <%= link_to 'Add to Profile', add_contract_path(c) %>
+ 
       <% end %>
     <% end %>
 <% else %>
