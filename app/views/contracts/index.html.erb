@@ -2,7 +2,7 @@
 
 <table>
 <% @contracts.each do |contract| %>
-  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %> col-sm-4">
 
     <td>
       <%= image_tag(contract.image_url, class: 'list_image') %>
@@ -15,12 +15,8 @@
                length: 80) %></dd>
       </dl>
     </td>
-
-    <td class="list_actions">
+    <td class="list_actions col-sm-4">
       <%= link_to 'Show', contract %><br/>
-      <%= link_to 'Edit', edit_contract_path(contract) %><br/>
-      <%= link_to 'Destroy', contract, method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
       <% if current_user.is_student %>
           <%= link_to 'Add to Profile', add_contract_path(contract) %>
       <% end %>
@@ -30,5 +26,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New contract', new_contract_path %>
