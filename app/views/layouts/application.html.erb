@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <!-- Added a header for sign in state -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -22,9 +23,9 @@
       <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
 	<% if current_user.is_student %>
-	  <li class="navbar-link"><a href="#">Welcome <%= current_user.first_name %>!</a></li>
+	  <li class="navbar-link"><a href="/">Welcome <%= current_user.first_name %>!</a></li>
 	<% else %>
-	  <li class="navbar-link"><a href="#">Welcome <%= current_user.corporation %> corporation!</a></li>
+	  <li class="navbar-link"><a href="/">Welcome <%= current_user.corporation %> corporation!</a></li>
 	<% end %>
 	<li><%= link_to 'Edit Account', edit_user_registration_path %></li>
 	<li><%= link_to 'Edit Profile', users_edit_profile_path %></li>
@@ -47,15 +48,22 @@
     <% end %>
     </div>
 </div>
+
+<!-- Sidebar -->
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
+    <div class="col-sm-3 col-md-2 col-xs-2 sidebar">
       <ul class="nav nav-sidebar">
-	<li><a href="/contracts">Accepted Contracts</a></li>
-	<li><a href="/contracts">Finished Contracts</a></li>
-	<li><a href="/contracts">Find Contracts</a></li>
-	<li><a href="/">Browse Companies</a></li>
-	<li><a href="/profiles">Browse Users</a></li>
+      <% if (current_user.is_student) %>
+	    <li><a href="/profiles#Progress">Accepted Contracts</a></li>
+	    <li><a href="/profiles#Saved">Finished Contracts</a></li>
+	    <li><a href="/contracts">Find Contracts</a></li>
+      <% else %>
+	    <li><a href="/profiles#Pending">Pending Contracts</a></li>
+	    <li><a href="/profiles#Progress">Progressing Contracts</a></li>
+	    <li><a href="/profiles#Waiting">Unstarted Contracts</a></li>
+        <li><%= link_to "Create contract", new_contract_path %></li>
+      <% end %>
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

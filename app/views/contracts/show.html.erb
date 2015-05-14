@@ -19,5 +19,8 @@
   <%= @contract.pay %>
 </p>
 
-<%= link_to 'Edit', edit_contract_path(@contract) %> |
+<% if (current_user.id == @contract.id) %>
+    <%= link_to 'Edit this contract', edit_contract_path %>
+
+<% end %>
 <%= link_to 'Back', contracts_path %>
