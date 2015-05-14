@@ -52,14 +52,16 @@ class ContractsController < ApplicationController
   end
 
   def add
-    respond_to do |format|
-        contract = Contract.find(params[:id])
-        current_user.contracts << contract
-        current_user.save!
-        @contracts = Contract.all
-        format.html {render :index, notice: "contract was successfully added"}
-        format.json {render :show, status: :ok, location: @contract }
-    end
+    if current_user.is_student
+         respond_to do |format|
+             contract = Contract.find(params[:id])
+             current_user.contracts << contract
+             current_user.save!
+             @contracts = Contract.all
+             format.html { redirect_to contract, notice: 'Contract was successfully created.' }
+             format.json {render :show, status: :ok, location: @contract }
+         end
+    end 
   end
 
 
