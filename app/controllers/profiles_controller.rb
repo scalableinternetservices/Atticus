@@ -4,12 +4,17 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    if (current_user.is_student)
+      @contracts = Contract.all
+    else
+      @users = User.all
+    end
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @profile = Profile.find(set_profile)
   end
 
   # GET /profiles/new

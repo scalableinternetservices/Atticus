@@ -1,0 +1,2 @@
+module ContractsUsersHelper
+end
