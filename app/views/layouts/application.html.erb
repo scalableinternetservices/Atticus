@@ -56,8 +56,9 @@
       <ul class="nav nav-sidebar">
 	<% if user_signed_in? %>
       <% if current_user.is_student %>
-	    <li><a href="/profiles#Progress">Accepted Contracts</a></li>
-	    <li><a href="/profiles#Saved">Finished Contracts</a></li>
+	    <li><a href="/profiles#Finished">Finished Contracts</a></li>
+	    <li><a href="/profiles#Progress">Live Contracts</a></li>
+	    <li><a href="/profiles#Saved">Saved Contracts</a></li>
 	    <li><a href="/contracts">Find Contracts</a></li>
       <% else %>
 	    <li><a href="/profiles#Pending">Pending Contracts</a></li>

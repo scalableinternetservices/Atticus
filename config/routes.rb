@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'contracts/:id/add' => "contracts#add", as: :add_contract
   get 'contracts/:id/start' => "contracts#start", as: :start_contract
   get 'contracts/:id/reset' => "contracts#reset", as: :reset_contract
+  get 'contracts/:id/approve' => "contracts#approve", as: :approve_contract
+  get 'contracts/:id/finish' => "contracts#finish", as: :finish_contract
   resources :profiles
   resources :contracts
 

@@ -7,11 +7,12 @@
 <% if (current_user.is_student) %>
 <h1 class="page-header">My Contracts</h1>
     <tbody>
-    <div id="Progress">
-    <h2>Contracts in Progress</h2>
+
+    <div id="Finished">
+    <h2>Finished Contracts</h2>
     <hr/>
     <% current_user.contracts.each do |c| %>
-      <% if (c.progress == true && c.worker == current_user.id) %>
+      <% if (c.done == true && c.worker == current_user.id) %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td>
             <%= image_tag(c.image_url, class: 'list_image') %>
@@ -25,15 +26,37 @@
           </td>
           <td class="list_actions">
             <%= link_to 'Show', c %><br/>
-            <%= link_to 'Edit', edit_contract_path(c) %><br/>
-            <% if current_user.is_student %>
-                <%= link_to 'Add to Profile', add_contract_path(c) %>
-            <% end %>
           </td>
         </tr>
       <% end %>
     <% end %>
     </div>
+    
+    <div id="Progress">
+    <h2>Progressing Contracts</h2>
+    <hr/>
+    <% current_user.contracts.each do |c| %>
+      <% if (c.progress == true && current_user.id == c.worker) %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td>
+            <%= image_tag(c.image_url, class: 'list_image') %>
+          </td>
+          <td class="list_description">
+            <dl>
+              <dt><%= c.title %></dt>
+              <dd><%= truncate(strip_tags(c.description),
+                     length: 80) %></dd>
+            </dl>
+          </td>
+          <td class="list_actions">
+            <%= link_to 'Show', c %><br/>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </div>
+
+    <!-- Saved to profile -->
     <div id="Saved">
     <h2>Saved contracts</h2>
     <hr/>
@@ -52,10 +75,6 @@
           </td>
           <td class="list_actions">
             <%= link_to 'Show', c %><br/>
-            <%= link_to 'Edit', edit_contract_path(c) %><br/>
-            <% if current_user.is_student %>
-                <%= link_to 'Add to Profile', add_contract_path(c) %>
-            <% end %>
           </td>
         </tr>
       <% end %>
@@ -72,7 +91,7 @@
            <% if (p.worker == c.id)  %>
                <p><strong><%= c.first_name %></strong> is awaiting your approval.</p>
                <br/>
-               <%= link_to "Approve and finish contract", approve_contract_path(c)%>
+               <%= link_to "Approve and finish contract", approve_contract_path(p)%>
            <% end %>
        <% end %>
      <% end %>
@@ -83,10 +102,14 @@
       <h2> Contracts in Progress </h2>
       <% current_user.contracts.each do |p| %>
       <% if (p.progress == true && p.done == false) %>
+      <h3><%= p.title %></h3>
+      <p class="contractdescription"><strong>Description:</strong> <%=p.description%></p>
         <% p.users.each do |c| %>
+            <% if (p.worker == c.id) %>
                 <p><strong><%= c.first_name %></strong> is working on this contract.</p>
                 <br/>
-                <%= link_to "Drop Student", reset_contract_path(c) %>
+                <%= link_to "Drop Student", reset_contract_path(p) %>
+            <% end %>
         <% end %>
       <% end %>
       <%end%>
@@ -95,10 +118,10 @@
    <div id="Waiting">
       <h2> Contracts Waiting to Start  </h2>
       <% current_user.contracts.each do |p| %>
+      <% if (p.progress == false) %>
       <h3><%= p.title %></h3>
       <p class="contractdescription"><strong>Description:</strong> <%=p.description%></p>
-      <% if (p.progress == false) %>
-          <p> There are currently <%= current_user.contracts.size-1 %> interested students.</p>
+          <p> There are currently <%= p.users.size-1 %> interested students.</p>
           <%= link_to "See all users", contract_path(p) %>
       <% end %>
       <%end%>
