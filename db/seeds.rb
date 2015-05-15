@@ -9,7 +9,7 @@
 
 Contract.delete_all
 
-for i in (0..100)
+#for i in (0..100)
 Contract.create(title: 'Rails Master'+i.to_s ,
   company: 'Google',
   description:
@@ -47,12 +47,12 @@ Contract.create(title: 'Hello World' +i.to_s,
   done: 0,
   owner: 0,
   worker: 0)
-end
+#end
 
 User.delete_all
 
 
-for i in 0..10000
+for i in 0..100
   User.create(
               first_name: 'test' + i.to_s,
               last_name: 'last' + i.to_s,
