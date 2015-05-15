@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
+    @user = User.all
   end
 
   # GET /profiles/1
@@ -16,7 +17,18 @@ class ProfilesController < ApplicationController
   end
 
   # GET /profiles/1/edit
-  def edit
+  def update
+    @user = User.find(params[:id])
+      respond_to do |format|
+      if @user.update(profile_params)
+        format.html { redirect_to root_path, notice: 'Profile was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    
+      end
   end
 
   # POST /profiles
@@ -26,7 +38,8 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
-  def update
+  def edit
+    @user = User.find(params[:id])
   end
 
   # DELETE /profiles/1
@@ -40,6 +53,8 @@ class ProfilesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def profile_params
-    end
+   def profile_params
+    params.require(:user).permit(:first_name, :last_name, :corporation, :school)
+  end
+
 end
