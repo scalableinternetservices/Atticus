@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   resources :profiles
   resources :contracts
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
 
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     delete "/logout" => "devise/sessions#destroy"
-    get "/users/edit_profile" => "devise/registration#edit_profile"
+    get "/users/edit_profile" => "devise/registrations#edit_profile"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
