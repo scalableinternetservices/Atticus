@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your contract "<%= @contract.title %>" has been accepted!</h1>
+    <p>
+      <%=@user.corporation %> has accepted your contract.
+      You have agreed to do this task:
+      <%=@contract.description%>
+      for pay amount <%=@contract.pay %>
+    </p>
+    <p>
+      To see contract, click <%=link_to 'here', @contract)%>
+    </p>
+  </body>
+</html>

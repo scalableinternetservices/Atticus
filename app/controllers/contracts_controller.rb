@@ -24,15 +24,24 @@ class ContractsController < ApplicationController
   # POST /contracts
   # POST /contracts.json
   def create
-    @contract = Contract.new(contract_params)
-
-    respond_to do |format|
-      if @contract.save
-        format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
-        format.json { render :show, status: :created, location: @contract }
-      else
-        format.html { render :new }
-        format.json { render json: @contract.errors, status: :unprocessable_entity }
+    # Only companies can create contracts
+    if !current_user.is_student
+      @contract = Contract.new(contract_params)
+      @contract.owner = current_user.id
+      current_user.contracts << @contract
+      respond_to do |format|
+        if @contract.save
+          format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
+          format.json { render :show, status: :created, location: @contract }
+        else
+          format.html { render :new }
+          format.json { render json: @contract.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+          format.html { render :index }
+          format.json { render json: @contract.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,17 +61,32 @@ class ContractsController < ApplicationController
   end
 
   def add
-    respond_to do |format|
-        contract = Contract.find(params[:id])
-        current_user.contracts << contract
-        current_user.save!
-        @contracts = Contract.all
-        format.html {render :index, notice: "contract was successfully added"}
-        format.json {render :show, status: :ok, location: @contract }
-    end
+    if current_user.is_student
+         respond_to do |format|
+             contract = Contract.find(params[:id])
+             current_user.contracts << contract
+             current_user.save!
+	     #company = User.find(params[:contract.owner])
+#	     send email!!!
+	     larrymailer.contract_pending(current_user, company, contract) 
+             @contracts = Contract.all
+             format.html { redirect_to contract, notice: 'Contract was successfully created.' }
+             format.json {render :show, status: :ok, location: @contract }
+         end
+    end 
   end
 
+  def start
 
+  end
+
+  def reset
+
+  end
+
+  def approve
+
+  end
   # DELETE /contracts/1
   # DELETE /contracts/1.json
   def destroy

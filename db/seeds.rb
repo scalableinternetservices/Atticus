@@ -16,8 +16,8 @@ Contract.create(title: 'Rails Master',
   pay: 300,
   progress: 0,
   done: 0,
-  owner: 'larrypage@google.com',
-  worker: '')
+  owner: 0,
+  worker: 0)
 
 Contract.create(title: 'Django',
   company: 'Apple',
@@ -29,8 +29,8 @@ Contract.create(title: 'Django',
   pay: 200,
   progress: 0,
   done: 0,
-  owner: 'timcook@apple.com',
-  worker: ''
+  owner: 0,
+  worker: 0
 )
 
 Contract.create(title: 'Hello World',
@@ -43,8 +43,8 @@ Contract.create(title: 'Hello World',
   pay: 100,
   progress: 0,
   done: 0,
-  owner: 'steveballmer@microsoft.com',
-  worker: '')
+  owner: 0,
+  worker: 0)
 User.delete_all
 User.create(first_name: 'larry',
   last_name: 'page',

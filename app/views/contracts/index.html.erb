@@ -1,12 +1,12 @@
 <h1 class="page-header">Listing contracts</h1>
-<div class="contracts-container">
-  <div class="row">
-    <% @contracts.each do |contract| %>
-    <div class="contract-li col-xs-6 col-sm-3">
-      <div class="contract-box">
-	<div class="contract-img">
-	  <%= image_tag(contract.image_url, class: 'contract-image') %>
-	</div>
+<ul class="contracts-list">
+  <% @contracts.each do |contract| %>
+  <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
+    <div class="contract-box">
+      <div class="contract-img">
+	<%= image_tag(contract.image_url, class: 'contract-image') %>
+      </div>
+      <div class="contract-text">
 	<h4 class="contract-title"><%= contract.title %></h4>
 	<div class="contract-description">
 	  <h4><%= truncate(strip_tags(contract.description), length: 80) %></h4>
@@ -16,10 +16,7 @@
 	  <% end %>
 	</div>
       </div>
-      <% end %>
-      <% if !current_user.is_student%>
-      <%= link_to 'New contract', new_contract_path %>
-      <% end %>
     </div>
-  </div>
-</div>
+  </li>
+  <% end %>
+</ul>

@@ -3,31 +3,40 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .contracts-list{
   overflow:hidden;
-  padding:3em;
-  width: 100%;
-  background:red;
+  padding:0;
+  margin: 0;
+  width:100%;
+  background: red;
 }
+
 .contract-li{
-  margin:1em;
+  margin:0;
+  padding:1em;
   float:left;
   list-style:none;
-  width: 20%;
-}
-.contract{
-  text-decoration:none;
-  color:#000;
-  background:#ffc !important;
-  outline-style: solid;
-  outline-width: 1px;
-  display:block;
-  height:200%;
-  width:100%;
-  padding:1em;
-  text-align:center;
-}
-.contract-image{
   width: 100%;
+  height: 150px;
+  background:red;
 }
+
+.contract-even{
+  background: #fff;
+}
+
+.contract-odd{
+  background: #eee;
+}
+
+.contract-image{
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+}
+
+.contract-text{
+  float:left;
+}
+
 .contract-title{
   font-size:100%;
   font-weight:normal;

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your contract "<%= @contract.title %>" has a pending offer!</h1>
+    <p>
+      <%=@user.first_name %> <%=@user.last_name %> has accepted your contract.
+      <%=@user.first_name %> has agreed to do this task:
+      <%=@contract.description%>
+      for pay amount <%=@contract.pay %>
+    </p>
+    <p>
+      To see contract, click <%=link_to 'here', @contract)%>
+      To see user, click <%=link_to 'here', @contract)%>
+      Else, to accept the pending offer, go to your <a href="http://localhost:3000/profiles">dashboard</a>.
+    </p>
+  </body>
+</html>
+
