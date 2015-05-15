@@ -3,15 +3,16 @@ Rails.application.routes.draw do
   get 'contracts/:id/add' => "contracts#add", as: :add_contract
   get 'contracts/:id/start' => "contracts#start", as: :start_contract
   get 'contracts/:id/reset' => "contracts#reset", as: :reset_contract
+
+  #profile stuff
+
   resources :profiles
   resources :contracts
-
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
-
+  
+  devise_for :users, :controllers => { :registrations => "registrations" }
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     delete "/logout" => "devise/sessions#destroy"
-    get "/users/edit_profile" => "devise/registrations#edit_profile"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
