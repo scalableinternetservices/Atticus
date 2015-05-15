@@ -73,7 +73,17 @@ class ContractsController < ApplicationController
     end 
   end
 
+  def start
 
+  end
+
+  def reset
+
+  end
+
+  def approve
+
+  end
   # DELETE /contracts/1
   # DELETE /contracts/1.json
   def destroy

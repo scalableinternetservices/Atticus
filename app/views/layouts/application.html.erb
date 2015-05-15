@@ -54,7 +54,8 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 col-xs-2 sidebar">
       <ul class="nav nav-sidebar">
-      <% if (current_user.is_student) %>
+	<% if user_signed_in? %>
+      <% if current_user.is_student %>
 	    <li><a href="/profiles#Progress">Accepted Contracts</a></li>
 	    <li><a href="/profiles#Saved">Finished Contracts</a></li>
 	    <li><a href="/contracts">Find Contracts</a></li>
@@ -63,6 +64,7 @@
 	    <li><a href="/profiles#Progress">Progressing Contracts</a></li>
 	    <li><a href="/profiles#Waiting">Unstarted Contracts</a></li>
         <li><%= link_to "Create contract", new_contract_path %></li>
+      <% end %>
       <% end %>
       </ul>
     </div>

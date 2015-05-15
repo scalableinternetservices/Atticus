@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   get 'contracts/:id/add' => "contracts#add", as: :add_contract
+  get 'contracts/:id/start' => "contracts#start", as: :start_contract
+  get 'contracts/:id/reset' => "contracts#reset", as: :reset_contract
   resources :profiles
   resources :contracts
 
