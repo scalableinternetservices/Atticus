@@ -5,51 +5,86 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
 Contract.delete_all
-Contract.create(title: 'Rails Master',
+
+for i in (0..100)
+Contract.create(title: 'Rails Master'+i.to_s ,
   company: 'Google',
   description:
     %{
         We need a rockstar hero programmer
       },
   image_url: 'google.jpg',
-  pay: 300,
+  pay: rand(200...1000),
   progress: 0,
   done: 0,
   owner: 0,
   worker: 0)
-
-Contract.create(title: 'Django',
+Contract.create(title: 'Django' +i.to_s,
   company: 'Apple',
   description:
     %{
         MVC stuff
       },
   image_url: 'apple.jpg',
-  pay: 200,
+  pay: rand(200...1000),
   progress: 0,
   done: 0,
   owner: 0,
   worker: 0
 )
-
-Contract.create(title: 'Hello World',
+Contract.create(title: 'Hello World' +i.to_s,
   company: 'Microsoft',
   description:
     %{
         We need a Windows person
       },
   image_url: 'windows.jpg',
-  pay: 100,
+  pay: rand(200...1000),
   progress: 0,
   done: 0,
   owner: 0,
   worker: 0)
+end
+
 User.delete_all
-User.create(first_name: 'larry',
-  last_name: 'page',
-  corporation: 'Google',
-  email: 'google@gmail.com',
-  password: 'googleAtticus',
-  is_student: false
+
+
+for i in 0..10000
+  User.create(
+              first_name: 'test' + i.to_s,
+              last_name: 'last' + i.to_s,
+              school: 'UCLA',
+              email: 'test' + i.to_s + '@yahoo.com',
+              password: '12345678',
+              is_student: true 
 )
+
+end
+  User.create(
+              first_name: 'larry',
+              last_name: 'page',
+              corporation: 'Google',
+              email: 'larry@google.com',
+              password: '12345678',
+              is_student: false
+)
+  User.create(
+              first_name: 'steve',
+              last_name: 'jobs',
+              corporation: 'Apple',
+              email: 'steve@apple.com',
+              password: '12345678',
+              is_student: false
+)
+  User.create(
+              first_name: 'billy',
+              last_name: 'gates',
+              corporation: 'Microsoft',
+              email: '3commaclub@microsoft.com',
+              password: '12345678',
+              is_student: false
+)
+
