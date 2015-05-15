@@ -135,14 +135,7 @@ class ContractsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
-      if Contract.where(params[:id]).exists?
-          respond_to do |format|
-            format.html { redirect_to contracts_url, notice: 'Contract does not exist.' }
-            format.json { head :no_content }
-          end
-      else
          @contract = Contract.find(params[:id])
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
