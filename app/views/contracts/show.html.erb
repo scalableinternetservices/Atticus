@@ -22,10 +22,9 @@
 <% if (current_user.id == @contract.owner) %>
     <%= link_to 'Edit this contract', edit_contract_path %>
     <% if @contract.progress == false %>
-        <%= @contract.users.each do |u| %>
+        <% @contract.users.each do |u| %>
             <% if u.is_student %>
                 <p><strong><%= u.first_name %></strong> is interested in this contract!</p>
-                <br/>
                 <%= link_to 'Assign student', start_contract_path %>
             <% end %>
         <% end %>
@@ -34,4 +33,5 @@
     <% end %>
 
 <% end %>
+<br/>
 <%= link_to 'Back', contracts_path %>
