@@ -22,16 +22,23 @@
 <% if (current_user.id == @contract.owner) %>
     <%= link_to 'Edit this contract', edit_contract_path %>
     <% if @contract.progress == false %>
+        <hr style="    padding: 0;
+        border: none;
+        border-top: medium double #333;
+        color: #333;
+        text-align: center;">
         <% @contract.users.each do |u| %>
             <% if u.is_student %>
                 <p><strong><%= u.first_name %></strong> is interested in this contract!</p>
-                <%= link_to 'Assign student', start_contract_path %>
+                <%= link_to 'Assign student', start_contract_path(:worker => u.id) %>
+                <hr>
             <% end %>
         <% end %>
     <% else %>
         <p> This contract is under progress! </p>
     <% end %>
-
+<% elsif (current_user.id == @contract.worker && @contract.progress == true && @contract.done == false) %>
+    <%= link_to 'Mark finished!', finish_contract_path%> 
 <% end %>
 <br/>
 <%= link_to 'Back', contracts_path %>

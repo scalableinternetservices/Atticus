@@ -61,32 +61,79 @@ class ContractsController < ApplicationController
   end
 
   def add
-    if current_user.is_student
+    if current_user.is_student 
          respond_to do |format|
              contract = Contract.find(params[:id])
-             current_user.contracts << contract
-             current_user.save!
-	     #company = User.find(params[:contract.owner])
-#	     send email!!!
-	     larrymailer.contract_pending(current_user, company, contract) 
-             @contracts = Contract.all
-             format.html { redirect_to contract, notice: 'Contract was successfully created.' }
-             format.json {render :show, status: :ok, location: @contract }
+             if !current_user.contracts.include?(contract)
+		 company = User.find(contract.owner)
+		 #send email to company to notify pending
+#		 Larrymailer.contract_pending(current_user, company, contract).deliver_now
+                 current_user.contracts << contract
+                 current_user.save!
+                 format.html { redirect_to contract, notice: 'Contract was successfully added to profile.' }
+                 format.json {render :show, status: :ok, location: @contract }
+             else
+                 format.html { redirect_to contract, notice: 'Contract is already saved' }
+                 format.json {render :show, status: :ok, location: @contract }
+             end
          end
     end 
   end
-
+  
+  # choose a user to start contract
   def start
-
+    @contract = Contract.find(params[:id])
+    @contract.worker = params[:worker]
+    worker = User.find(@contract.worker)
+    #send email to user to note contract accepted
+#    Larrymailer.contract_accepted(worker, @contract).deliver_now
+    @contract.progress = true
+    @contract.save!
+    respond_to do |format|
+             format.html { redirect_to @contract, notice: 'Contract was successfully assigned.' }
+             format.json {render :show, status: :ok, location: @contract }
+    end
   end
 
+  # Drop worker/student from contract
   def reset
-
+    @contract = Contract.find(params[:id])
+    @contract.progress = false
+    @contract.worker = 0;
+    @contract.save!
+    respond_to do |format|
+             format.html { redirect_to @contract, notice: 'Contract worker was successfully dropped.' }
+             format.json {render :show, status: :ok, location: @contract }
+    end
   end
 
+  # For student to mark as finished
+  def finish
+    @contract = Contract.find(params[:id])    
+    company = User.find(@contract.owner)
+    #email company that user has finished work
+#    Larrymailer.contract_finished(current_user, company, @contract).deliver_now
+    @contract.done = true
+    @contract.save!
+    respond_to do |format|
+             format.html { redirect_to @contract, notice: 'Contract worker was successfully finished.' }
+             format.json {render :show, status: :ok, location: @contract }
+    end
+  end
+
+  # For companies to end transaction
   def approve
-
+    @contract = Contract.find(params[:id])
+    user = User.find(@contract.worker)
+    #send worker email that he will get payed for his approved work
+#    Larrymailer.contract_approved(user, @contract).deliver_now
+    @contract.destroy
+    respond_to do |format|
+      format.html { redirect_to contracts_url, notice: 'Contract was successfully completed. Payment will be sent via email' }
+      format.json { head :no_content }
+    end
   end
+
   # DELETE /contracts/1
   # DELETE /contracts/1.json
   def destroy

@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   get 'contracts/:id/add' => "contracts#add", as: :add_contract
   get 'contracts/:id/start' => "contracts#start", as: :start_contract
   get 'contracts/:id/reset' => "contracts#reset", as: :reset_contract
+  get 'contracts/:id/approve' => "contracts#approve", as: :approve_contract
+  get 'contracts/:id/finish' => "contracts#finish", as: :finish_contract
   resources :profiles
   resources :contracts
 
-  devise_for :users
+  #profile stuff
 
+  
+  devise_for :users, :controllers => { :registrations => "registrations" }
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     delete "/logout" => "devise/sessions#destroy"
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'profiles#index'
 
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
