@@ -28,7 +28,7 @@
 <hr/>
 <ul class="contracts-list progressing">
   <% current_user.contracts.each do |contract| %>
-  <% if (contract.progress == true && current_user.id == contract.worker) %>
+  <% if (contract.done == false && contract.progress == true && current_user.id == contract.worker) %>
   <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
     <div class="contract-box">
       <div class="contract-img">
