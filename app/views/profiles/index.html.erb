@@ -36,7 +36,7 @@
     <h2>Progressing Contracts</h2>
     <hr/>
     <% current_user.contracts.each do |c| %>
-      <% if (c.progress == true && current_user.id == c.worker) %>
+      <% if c.progress == true && current_user.id == c.worker %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td>
             <%= image_tag(c.image_url, class: 'list_image') %>
@@ -61,7 +61,7 @@
     <h2>Saved contracts</h2>
     <hr/>
     <% current_user.contracts.each do |c| %>
-      <% if (c.progress == false) %>
+      <% if c.progress == false %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td>
             <%= image_tag(c.image_url, class: 'list_image') %>

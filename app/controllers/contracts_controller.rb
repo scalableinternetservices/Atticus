@@ -107,7 +107,7 @@ class ContractsController < ApplicationController
    @contract.done = true
    @contract.save!
     respond_to do |format|
-             format.html { redirect_to @contract, notice: 'Contract worker was successfully finished.' }
+             format.html { redirect_to @contract, notice: 'Contract was successfully submitted.' }
              format.json {render :show, status: :ok, location: @contract }
     end
   end
