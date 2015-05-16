@@ -1,5 +1,5 @@
 class Larrymailer < ApplicationMailer
-      default from: 'automated@atticus.com'
+      default from: '"Atticus Notifications" <automatedAtticus@gmail.com>'
 
       def contract_accepted(user, contract)
       	  @user = user

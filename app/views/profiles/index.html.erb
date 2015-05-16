@@ -1,5 +1,6 @@
 <% if (current_user.is_student) %>
 <h1 class="page-header">My Contracts</h1>
+
 <h2>Finished Contracts</h2>
 <hr/>
 <ul class="contracts-list finished">  
@@ -22,11 +23,12 @@
   <% end %>
   <% end %>
 </ul>
+
 <h2>Progressing Contracts</h2>
 <hr/>
 <ul class="contracts-list progressing">
   <% current_user.contracts.each do |contract| %>
-  <% if (contract.progress == true && current_user.id == contract.worker) %>
+  <% if (contract.done == false && contract.progress == true && current_user.id == contract.worker) %>
   <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
     <div class="contract-box">
       <div class="contract-img">
@@ -44,6 +46,7 @@
   <% end %>
   <% end %>
 </ul>
+
 <h2>Saved contracts</h2>
 <hr/>
 <ul class="contract-list saved">
@@ -59,7 +62,7 @@
         <div class="contract-description">
           <p><%= truncate(strip_tags(contract.description), length: 80) %></p>
           <%= link_to 'Show', contract, class:"btn btn-default btn-xs"%>
-	</div>
+	    </div>
       </div>
     </div>
   </li>
