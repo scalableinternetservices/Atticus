@@ -10,7 +10,7 @@
 Contract.delete_all
 
 #for i in (0..100)
-Contract.create(title: 'Rails Master'+i.to_s ,
+Contract.create(title: 'Rails Master',
   company: 'Google',
   description:
     %{
@@ -22,7 +22,7 @@ Contract.create(title: 'Rails Master'+i.to_s ,
   done: 0,
   owner: 0,
   worker: 0)
-Contract.create(title: 'Django' +i.to_s,
+Contract.create(title: 'Django',
   company: 'Apple',
   description:
     %{
@@ -35,7 +35,7 @@ Contract.create(title: 'Django' +i.to_s,
   owner: 0,
   worker: 0
 )
-Contract.create(title: 'Hello World' +i.to_s,
+Contract.create(title: 'Hello World',
   company: 'Microsoft',
   description:
     %{
