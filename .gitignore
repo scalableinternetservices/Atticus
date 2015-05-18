@@ -52,3 +52,6 @@ tags
 
 # Ignore emacs
 *~
+
+# Ignore application configuration
+/config/application.yml

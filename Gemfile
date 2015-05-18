@@ -43,6 +43,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#paperclip and aws S3 for images
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'fog'
+
+#secrets!!!!
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
