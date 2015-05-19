@@ -18,11 +18,28 @@
       <%= f.label :corporation %><br />
       <%= f.text_field :corporation, autofocus: true %>
     </div>
+
+    <div class="field"> 
+      <%= f.label :company_website %><br />
+      <%= f.text_field :company_website, autofocus: true %>
+    </div>
   <% else %>
 
     <div class="field">
       <%= f.label :school %><br />
       <%= f.text_field :school, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :linkedin_url %><br />
+      <%= f.text_field :linkedin_url, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :github_url %><br />
+      <%= f.text_field :github_url, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :personal_website %><br />
+      <%= f.text_field :personal_website, autofocus: true %>
     </div>
   <% end %>
 
