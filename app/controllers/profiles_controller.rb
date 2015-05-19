@@ -27,9 +27,8 @@ class ProfilesController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    
-      end
+      end 
+    end
   end
 
   # POST /profiles
@@ -55,7 +54,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
    def profile_params
-    params.require(:user).permit(:first_name, :last_name, :corporation, :school)
+    params.require(:user).permit(:first_name, :last_name, :corporation, :school, :avatar)
   end
 
 end

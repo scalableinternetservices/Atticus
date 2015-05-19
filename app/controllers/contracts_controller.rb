@@ -67,7 +67,7 @@ class ContractsController < ApplicationController
              if !current_user.contracts.include?(contract)
 		 company = User.find(contract.owner)
 		 #send email to company to notify pending
-		 Larrymailer.contract_pending(current_user, company, contract).deliver_now
+		 #Larrymailer.contract_pending(current_user, company, contract).deliver_now
                  current_user.contracts << contract
                  current_user.save!
                  format.html { redirect_to contract, notice: 'Contract was successfully added to profile.' }
@@ -86,7 +86,7 @@ class ContractsController < ApplicationController
     @contract.worker = params[:worker]
     worker = User.find(@contract.worker)
     #send email to user to note contract accepted
-    Larrymailer.contract_accepted(worker, @contract).deliver_now
+    #Larrymailer.contract_accepted(worker, @contract).deliver_now
     @contract.progress = true
     @contract.save!
     respond_to do |format|
@@ -112,7 +112,7 @@ class ContractsController < ApplicationController
     @contract = Contract.find(params[:id])    
     company = User.find(@contract.owner)
     #email company that user has finished work
-    Larrymailer.contract_finished(current_user, company, @contract).deliver_now
+    #Larrymailer.contract_finished(current_user, company, @contract).deliver_now
     @contract.done = true
     @contract.save!
     respond_to do |format|
@@ -126,7 +126,7 @@ class ContractsController < ApplicationController
     @contract = Contract.find(params[:id])
     user = User.find(@contract.worker)
     #send worker email that he will get payed for his approved work
-    Larrymailer.contract_approved(user, @contract).deliver_now
+    #Larrymailer.contract_approved(user, @contract).deliver_now
     @contract.destroy
     respond_to do |format|
       format.html { redirect_to contracts_url, notice: 'Contract was successfully completed. Payment will be sent via email' }
