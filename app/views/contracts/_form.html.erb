@@ -31,6 +31,12 @@
     <%= f.label :pay %><br>
     <%= f.text_field :pay %>
   </div>
+
+<div class="field">
+    <%= f.label :skills_required %><br />
+    <%= autocomplete_field_tag :skill_tag_name, params[:name], autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

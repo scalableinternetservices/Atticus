@@ -92,3 +92,6 @@ end
   SkillTag.find_or_create_by(name: t)
 end
 
+["Automotive","Transportation","Agriculture","Manufacturing","Entertainment"].each do |t|
+  IndustryTag.find_or_create_by(name: t)
+end
