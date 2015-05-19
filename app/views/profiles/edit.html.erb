@@ -59,7 +59,7 @@
 
   <div class="field">
     <%= f.label :skill %><br />
-    <%= autocomplete_field_tag :skill_tag_name, params[:name], autocomplete_skill_tag_name_profiles_path %>
+    <%= autocomplete_field_tag :skill_tag_name, params[:name], autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true %>
   </div>
 
 
