@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   autocomplete :skill_tag, :name
-
+  autocomplete :industry_tag, :name
   # GET /profiles
   # GET /profiles.json
   def index

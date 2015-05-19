@@ -1,8 +1,9 @@
-<div>
-    <div>
-        <%=comment.message %><br>
-        <%= link_to("Reply", controller: "comments", action: "new", comment: {parent_id: comment.id, contract_id: comment.contract.id} ) %>
-    </div>
-    <%= render comment.replies %>
-
+<div class="well well-sm" style="margin-top: 20px">
+  <%= comment.message %><br>
+  <%= link_to("Reply",
+              {controller: "comments",
+              action: "new",
+              comment: {parent_id: comment.id, contract_id: comment.contract.id}},
+              class: 'btn btn-primary btn-xs') %>
+  <%= render comment.replies %>
 </div>

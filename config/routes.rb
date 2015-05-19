@@ -9,9 +9,12 @@ Rails.application.routes.draw do
 
   resources :profiles do
     get :autocomplete_skill_tag_name, on: :collection
+    get :autocomplete_industry_tag_name, on: :collection
   end
 
-  resources :contracts
+  resources :contracts do
+    get :autocomplete_skill_tag_name, on: :collection
+  end
 
   #profile stuff
 
