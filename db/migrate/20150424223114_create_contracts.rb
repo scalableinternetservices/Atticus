@@ -4,7 +4,6 @@ class CreateContracts < ActiveRecord::Migration
       t.string :title
       t.string :company
       t.string :description
-      t.string :image_url
       t.decimal :pay
       t.boolean :progress, default: false
       t.boolean :done, default: false

@@ -11,20 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519010539) do
+ActiveRecord::Schema.define(version: 20150519095505) do
 
   create_table "contracts", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.string   "company",     limit: 255
-    t.string   "description", limit: 255
-    t.string   "image_url",   limit: 255
-    t.decimal  "pay",                     precision: 10
-    t.boolean  "progress",    limit: 1,                  default: false
-    t.boolean  "done",        limit: 1,                  default: false
-    t.integer  "owner",       limit: 4
-    t.integer  "worker",      limit: 4
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.string   "title",                limit: 255
+    t.string   "company",              limit: 255
+    t.string   "description",          limit: 255
+    t.decimal  "pay",                              precision: 10
+    t.boolean  "progress",             limit: 1,                  default: false
+    t.boolean  "done",                 limit: 1,                  default: false
+    t.integer  "owner",                limit: 4
+    t.integer  "worker",               limit: 4
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.string   "picture_file_name",    limit: 255
+    t.string   "picture_content_type", limit: 255
+    t.integer  "picture_file_size",    limit: 4
+    t.datetime "picture_updated_at"
   end
 
   create_table "contracts_users", id: false, force: :cascade do |t|
