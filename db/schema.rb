@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150519172147) do
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "content",          limit: 65535
-    t.integer  "commentable_id",   limit: 4
-    t.integer  "commentable_type", limit: 4
-    t.string   "ancestry",         limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
-
   create_table "contracts", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.string   "company",     limit: 255
