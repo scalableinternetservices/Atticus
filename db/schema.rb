@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519010539) do
+ActiveRecord::Schema.define(version: 20150519204904) do
 
   create_table "contracts", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -36,13 +36,18 @@ ActiveRecord::Schema.define(version: 20150519010539) do
   add_index "contracts_users", ["user_id"], name: "index_contracts_users_on_user_id", using: :btree
 
   create_table "industry_tags", force: :cascade do |t|
-    t.string   "industry_name", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skill_tags", force: :cascade do |t|
-    t.string   "skill_name", limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

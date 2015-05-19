@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'contracts/:id/reset' => "contracts#reset", as: :reset_contract
   get 'contracts/:id/approve' => "contracts#approve", as: :approve_contract
   get 'contracts/:id/finish' => "contracts#finish", as: :finish_contract
-  resources :profiles
+
+  resources :profiles do
+    get :autocomplete_skill_tag_name, on: :collection
+  end
+
   resources :contracts
 
   #profile stuff

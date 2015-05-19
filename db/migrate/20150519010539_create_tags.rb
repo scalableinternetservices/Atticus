@@ -1,12 +1,12 @@
 class CreateTags < ActiveRecord::Migration
   def change
     create_table :skill_tags do |t|
-      t.string :skill_name
+      t.string :name
       t.timestamps null: false
     end
     
     create_table :industry_tags do |t|
-      t.string :industry_name
+      t.string :name
       t.timestamps null: false
     end
 

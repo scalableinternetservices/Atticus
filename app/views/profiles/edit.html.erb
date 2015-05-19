@@ -1,3 +1,7 @@
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "application" %>
+
+
 <h2>Customize Profile</h2>
 
 <%= form_for @user, url: profile_path(@user), html: { method: :put } do |f| %>
@@ -53,9 +57,16 @@
     <%= f.text_area :profile, rows: 10, autofocus: true %>
   </div>
 
+  <div class="field">
+    <%= f.label :skill %><br />
+    <%= autocomplete_field_tag :skill_tag_name, params[:name], autocomplete_skill_tag_name_profiles_path %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit "Save" %>
   </div>
+
 <% end %>
 
 <%= link_to "Back", :back %>
