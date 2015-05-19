@@ -8,4 +8,9 @@ class Contract < ActiveRecord::Base
 	}
     has_and_belongs_to_many :users
     has_and_belongs_to_many :skill_tags
+    has_many :comments
+
+    def root_comments
+        comments.where parent_id: nil
+    end
 end
