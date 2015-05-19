@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :comments
   get 'contracts/:id/add' => "contracts#add", as: :add_contract
   get 'contracts/:id/start' => "contracts#start", as: :start_contract
   get 'contracts/:id/reset' => "contracts#reset", as: :reset_contract
@@ -56,8 +57,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end
