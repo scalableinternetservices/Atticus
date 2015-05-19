@@ -6,6 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :encrypted_password, null: false, default: ""
       t.boolean :is_student, default: true
 
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -19,6 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :last_sign_in_at
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
+      
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -31,6 +33,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      #links
+      t.string :linkedin_url
+      t.string :github_url
+      t.string :personal_website
+      t.string :company_website
+      
 
       t.timestamps
     end

@@ -36,4 +36,14 @@
     <%= link_to 'Mark finished!', finish_contract_path%> 
 <% end %>
 <br/>
+
+<div>
+      <%= link_to("Comment on this contract", controller: "comments", action: "new", comment: {contract_id: @contract.id} ) %>
+</div>
+
+<div>
+      Comments:<br>
+        <%= render @contract.root_comments %>
+</div>
+
 <%= link_to 'Back', contracts_path %>

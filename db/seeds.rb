@@ -52,7 +52,7 @@ Contract.create(title: 'Hello World',
 User.delete_all
 
 
-for i in 0..100
+for i in 0..10
   User.create(
               first_name: 'test' + i.to_s,
               last_name: 'last' + i.to_s,
@@ -87,4 +87,8 @@ end
               password: '12345678',
               is_student: false
 )
+
+["C++","Java","JavaScript","Python","Ruby"].each do |t|
+  SkillTag.find_or_create_by(name: t)
+end
 

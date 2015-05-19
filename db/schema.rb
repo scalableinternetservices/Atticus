@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519095505) do
+ActiveRecord::Schema.define(version: 20150519204904) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "message",     limit: 65535
+    t.integer  "contract_id", limit: 4
+    t.integer  "parent_id",   limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "comments", ["contract_id"], name: "index_comments_on_contract_id", using: :btree
+  add_index "comments", ["parent_id"], name: "index_comments_on_parent_id", using: :btree
 
   create_table "contracts", force: :cascade do |t|
     t.string   "title",                limit: 255
@@ -39,13 +50,18 @@ ActiveRecord::Schema.define(version: 20150519095505) do
   add_index "contracts_users", ["user_id"], name: "index_contracts_users_on_user_id", using: :btree
 
   create_table "industry_tags", force: :cascade do |t|
-    t.string   "industry_name", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skill_tags", force: :cascade do |t|
-    t.string   "skill_name", limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -78,6 +94,10 @@ ActiveRecord::Schema.define(version: 20150519095505) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.string   "linkedin_url",           limit: 255
+    t.string   "github_url",             limit: 255
+    t.string   "personal_website",       limit: 255
+    t.string   "company_website",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name",             limit: 255
@@ -92,4 +112,5 @@ ActiveRecord::Schema.define(version: 20150519095505) do
     t.datetime "avatar_updated_at"
   end
 
+  add_foreign_key "comments", "contracts"
 end
