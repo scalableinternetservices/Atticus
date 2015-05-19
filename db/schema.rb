@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519010539) do
+ActiveRecord::Schema.define(version: 20150519172147) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content",          limit: 65535
+    t.integer  "commentable_id",   limit: 4
+    t.integer  "commentable_type", limit: 4
+    t.string   "ancestry",         limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
 
   create_table "contracts", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -27,6 +38,14 @@ ActiveRecord::Schema.define(version: 20150519010539) do
     t.datetime "updated_at",                                             null: false
   end
 
+  create_table "contracts_skill_tags", id: false, force: :cascade do |t|
+    t.integer "contract_id",  limit: 4
+    t.integer "skill_tag_id", limit: 4
+  end
+
+  add_index "contracts_skill_tags", ["contract_id"], name: "index_contracts_skill_tags_on_contract_id", using: :btree
+  add_index "contracts_skill_tags", ["skill_tag_id"], name: "index_contracts_skill_tags_on_skill_tag_id", using: :btree
+
   create_table "contracts_users", id: false, force: :cascade do |t|
     t.integer "user_id",     limit: 4
     t.integer "contract_id", limit: 4
@@ -41,27 +60,27 @@ ActiveRecord::Schema.define(version: 20150519010539) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "industry_tags_users", id: false, force: :cascade do |t|
+    t.integer "user_id",         limit: 4
+    t.integer "industry_tag_id", limit: 4
+  end
+
+  add_index "industry_tags_users", ["industry_tag_id"], name: "index_industry_tags_users_on_industry_tag_id", using: :btree
+  add_index "industry_tags_users", ["user_id"], name: "index_industry_tags_users_on_user_id", using: :btree
+
   create_table "skill_tags", force: :cascade do |t|
     t.string   "skill_name", limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  create_table "user_industry_tag", id: false, force: :cascade do |t|
-    t.integer "user_id",         limit: 4
-    t.integer "industry_tag_id", limit: 4
-  end
-
-  add_index "user_industry_tag", ["industry_tag_id"], name: "index_user_industry_tag_on_industry_tag_id", using: :btree
-  add_index "user_industry_tag", ["user_id"], name: "index_user_industry_tag_on_user_id", using: :btree
-
-  create_table "user_skill_tag", id: false, force: :cascade do |t|
+  create_table "skill_tags_users", id: false, force: :cascade do |t|
     t.integer "user_id",      limit: 4
     t.integer "skill_tag_id", limit: 4
   end
 
-  add_index "user_skill_tag", ["skill_tag_id"], name: "index_user_skill_tag_on_skill_tag_id", using: :btree
-  add_index "user_skill_tag", ["user_id"], name: "index_user_skill_tag_on_user_id", using: :btree
+  add_index "skill_tags_users", ["skill_tag_id"], name: "index_skill_tags_users_on_skill_tag_id", using: :btree
+  add_index "skill_tags_users", ["user_id"], name: "index_skill_tags_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",   null: false
