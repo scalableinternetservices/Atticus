@@ -10,12 +10,17 @@ class CreateTags < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :user_skill_tag, id: false do |t|
+    create_table :skill_tags_users, id: false do |t|
       t.belongs_to :user, index: true
       t.belongs_to :skill_tag, index: true
     end
     
-    create_table :user_industry_tag, id: false do |t|
+    create_table :contracts_skill_tags, id: false do |t|
+      t.belongs_to :contract, index: true
+      t.belongs_to :skill_tag, index: true
+    end
+
+    create_table :industry_tags_users, id: false do |t|
       t.belongs_to :user, index: true
       t.belongs_to :industry_tag,  index: true
     end
