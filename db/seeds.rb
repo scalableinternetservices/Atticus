@@ -16,7 +16,6 @@ Contract.create(title: 'Rails Master',
     %{
         We need a rockstar hero programmer
       },
-  image_url: 'google.jpg',
   pay: rand(200...1000),
   progress: 0,
   done: 0,
@@ -28,7 +27,6 @@ Contract.create(title: 'Django',
     %{
         MVC stuff
       },
-  image_url: 'apple.jpg',
   pay: rand(200...1000),
   progress: 0,
   done: 0,
@@ -41,7 +39,6 @@ Contract.create(title: 'Hello World',
     %{
         We need a Windows person
       },
-  image_url: 'windows.jpg',
   pay: rand(200...1000),
   progress: 0,
   done: 0,
