@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get :autocomplete_skill_tag_name, on: :collection
   end
 
+  get 'skill_tags/:id/add' => "skill_tags#add", as: :add_skill_tag
   #profile stuff
 
   

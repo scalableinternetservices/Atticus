@@ -1,6 +1,7 @@
 class ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
   autocomplete :skill_tag, :name
+
   # GET /contracts
   # GET /contracts.json
   def index
@@ -29,6 +30,15 @@ class ContractsController < ApplicationController
       @contract = Contract.new(contract_params)
       @contract.owner = current_user.id
       current_user.contracts << @contract
+
+      #skills
+
+      result = params[:skill_tag_name].split(",")
+      result.each do |k|
+        skill = SkillTag.find_by_name(k)
+        @contract.skill_tags << skill
+        @contract.save!
+      end
       respond_to do |format|
         if @contract.save
           format.html { redirect_to @contract, notice: 'Contract was successfully created.' }

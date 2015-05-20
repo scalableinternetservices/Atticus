@@ -21,6 +21,23 @@ class ProfilesController < ApplicationController
   # GET /profiles/1/edit
   def update
     @user = User.find(params[:id])
+
+    if (current_user.is_student)
+      result = params[:user][:skill_tag_name][0].split(",")
+      result.each do |k|
+        skill = SkillTag.find_by_name(k)
+        current_user.skill_tags << skill
+        current_user.save!
+      end
+    else
+      result = params[:user][:industry_tag_name][0].split(",")
+      result.each do |k|
+        industry = IndustryTag.find_by_name(k)
+        current_user.industry_tags << industry
+        current_user.save!
+      end
+    end
+    
       respond_to do |format|
       if @user.update(profile_params)
         format.html { redirect_to root_path, notice: 'Profile was successfully updated.' }
