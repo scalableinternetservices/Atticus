@@ -32,7 +32,6 @@ Rails.application.routes.draw do
   root 'profiles#index'
 
   #search stuff
-  get 'search', to:'search#search'
 
 
   # Example of regular route:
