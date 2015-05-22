@@ -7,11 +7,13 @@
 one: 
     message: "Tester"
     contract_id: 1
+    parent_id: 1
 
 # column: value
 #
 two: 
     message: "CASH"
     contract_id: 2
+    parent_id: 1
 
 #  column: value
