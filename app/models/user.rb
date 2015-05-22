@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
       medium: '300x300>'
   }
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  # Only accepts school emails if student
+  #  validates_format_of :email, :with => /\A(\S+)@(.+)\.(edu)\z/, :if => :is_student, :message => "Students must register with a .edu email address"
 
 
 end

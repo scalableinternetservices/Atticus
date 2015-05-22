@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'contracts/:id/reset' => "contracts#reset", as: :reset_contract
   get 'contracts/:id/approve' => "contracts#approve", as: :approve_contract
   get 'contracts/:id/finish' => "contracts#finish", as: :finish_contract
-
+  
   resources :profiles do
     get :autocomplete_skill_tag_name, on: :collection
     get :autocomplete_industry_tag_name, on: :collection
@@ -31,7 +31,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'profiles#index'
 
-  
+  #search stuff
+  get 'search', to:'search#search'
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
