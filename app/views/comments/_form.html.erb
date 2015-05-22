@@ -12,7 +12,7 @@
   <% end %>
 
   <div>
-    On submission:<br>
+    On contract:<br>
     <%= @comment.contract.title %>
     <%= f.hidden_field :contract_id, value: @comment.contract.id %>
   </div>
@@ -31,6 +31,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+      <%= f.submit "Create", :class => 'btn' %>
   </div>
 <% end %>
