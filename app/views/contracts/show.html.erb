@@ -1,19 +1,19 @@
 <div style="overflow: hidden">
 <h1 class="page-header"><%= @contract.title %></h1>
-<p>
+<h3>
   <strong>Company:</strong>
   <%= @contract.company %>
-</p>
+</h3>
 
-<p>
+<h3>
   <strong>Description:</strong>
   <%= @contract.description %>
-</p>
+</h3>
 
-<p>
+<h3>
   <strong>Pay:</strong>
   <%= @contract.pay %>
-</p>
+</h3>
 
 <% if (current_user.id == @contract.owner) %>
     <%= link_to 'edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>

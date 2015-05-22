@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150520204353) do
     t.decimal  "pay",                              precision: 10
     t.boolean  "progress",             limit: 1,                  default: false
     t.boolean  "done",                 limit: 1,                  default: false
+    t.boolean  "approved",             limit: 1,                  default: false
     t.integer  "owner",                limit: 4
     t.integer  "worker",               limit: 4
     t.datetime "created_at",                                                      null: false

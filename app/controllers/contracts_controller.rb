@@ -137,7 +137,8 @@ class ContractsController < ApplicationController
     user = User.find(@contract.worker)
     #send worker email that he will get payed for his approved work
     #Larrymailer.contract_approved(user, @contract).deliver_now
-    @contract.destroy
+    @contract.approved = true
+    @contract.save!
     respond_to do |format|
       format.html { redirect_to contracts_url, notice: 'Contract was successfully completed. Payment will be sent via email' }
       format.json { head :no_content }

@@ -75,7 +75,7 @@
   <div id="Pending">   
     <h2>Contracts awaiting Approval</h2>
     <% current_user.contracts.each do |p| %>
-    <% if (p.done == true) %>
+    <% if (p.done == true && p.approved == false) %>
     <% p.users.each do |c| %>
     <% if (p.worker == c.id)  %>
     <p><strong><%= c.first_name %></strong> is awaiting your approval.</p>
