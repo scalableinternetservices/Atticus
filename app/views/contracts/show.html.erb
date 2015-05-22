@@ -1,4 +1,4 @@
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<div style="overflow: hidden">
 <h1 class="page-header"><%= @contract.title %></h1>
 <p>
   <strong>Company:</strong>
@@ -16,7 +16,7 @@
 </p>
 
 <% if (current_user.id == @contract.owner) %>
-    <%= link_to 'Edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
+    <%= link_to 'edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
     <% if @contract.progress == false %>
         <hr style="    padding: 0;
         border: none;
@@ -26,7 +26,7 @@
         <% @contract.users.each do |u| %>
             <% if u.is_student %>
                 <p><strong><%= u.first_name %></strong> is interested in this contract!</p>
-                <%= link_to 'Assign student', start_contract_path(:worker => u.id) %>
+                <%= link_to 'Assign student', start_contract_path(:worker => u.id), {class: 'btn btn-primary btn-xs'} %>
                 <hr>
             <% end %>
         <% end %>
@@ -34,7 +34,7 @@
         <p> This contract is under progress! </p>
     <% end %>
 <% elsif (current_user.id == @contract.worker && @contract.progress == true && @contract.done == false) %>
-    <%= link_to 'Mark finished!', finish_contract_path%> 
+    <%= link_to 'Mark finished!', finish_contract_path, {class: 'btn btn-primary btn-xs'}%> 
 <% end %>
 <hr>
 <h1 class="page-header">Similar Contracts</h1>
@@ -60,8 +60,9 @@
             <% end %>
         </div>
 </div>
+<hr>
 <div>
-          <%= link_to("Comment on this contract", controller: "comments", action: "new", comment: {contract_id: @contract.id} ) %>
+    <%= link_to("Comment on this contract", {controller: "comments", action: "new", comment: {contract_id: @contract.id}}, class: 'btn btn-primary btn-xs') %>
       </div>
 
       <div>
@@ -69,3 +70,4 @@
                   <%= render @contract.root_comments %>
               </div>
 <%= link_to 'Back', contracts_path %>
+</div>
