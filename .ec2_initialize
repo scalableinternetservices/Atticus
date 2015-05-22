@@ -4,4 +4,4 @@ wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearc
 sudo unzip elasticsearch-1.5.2 -d /usr/local/elasticsearch
 rm elasticsearch-1.5.2.zip
 cd /usr/local/elasticsearch/elasticsearch-1.5.2/
-./bin/plugin install elasticsearch/elasticsearch-cloud-aws/2.4.1
+./bin/plugin install elasticsearch/elasticsearch-cloud-aws/2.5.1
