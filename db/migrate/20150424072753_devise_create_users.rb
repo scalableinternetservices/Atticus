@@ -40,8 +40,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :company_website
       
       #ratings
-      t.float   :rating_value
-      t.integer :rating_count, default: 0, null: false
+      t.float   :rating_value, default: 5.0
+      t.integer :rating_count, default: 1, null: false
 
       t.timestamps
     end

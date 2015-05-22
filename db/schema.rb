@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 20150520204353) do
     t.string   "github_url",             limit: 255
     t.string   "personal_website",       limit: 255
     t.string   "company_website",        limit: 255
-    t.float    "rating_value",           limit: 24
-    t.integer  "rating_count",           limit: 4,   default: 0,    null: false
+    t.float    "rating_value",           limit: 24,  default: 5.0
+    t.integer  "rating_count",           limit: 4,   default: 1,    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name",             limit: 255
