@@ -153,6 +153,18 @@ class ContractsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # search
+  def search
+    if params[:search].nil?
+      @contracts = []
+    else
+      @query = Contract.search do
+        fulltext params[:search]
+      end
+      @contracts = @query.results
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

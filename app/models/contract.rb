@@ -13,4 +13,8 @@ class Contract < ActiveRecord::Base
     def root_comments
         comments.where parent_id: nil
     end
+
+    searchable do 
+        text :title, :description, :company
+    end
 end
