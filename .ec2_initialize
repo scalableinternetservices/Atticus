@@ -1,2 +1,7 @@
 sudo yum install -y patch
 sudo yum install -y sqlite-devel
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.5.2.zip
+sudo unzip elasticsearch-1.5.2 -d /usr/local/elasticsearch
+rm elasticsearch-1.5.2.zip
+cd /usr/local/elasticsearch/elasticsearch-1.5.2/
+./bin/plugin install elasticsearch/elasticsearch-cloud-aws/2.4.1
