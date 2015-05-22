@@ -64,5 +64,10 @@ group :development, :test do
 #jquery/autocomplete 
 gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
+
+#search
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 end
 

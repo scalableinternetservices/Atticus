@@ -1,4 +1,8 @@
+require 'elasticsearch/model'
+
 class Contract < ActiveRecord::Base
+    include Elasticsearch::Model
+    include Elasticsearch::Model::Callbacks
 	validates :title, :description, :company, presence: true
 	validates :pay, numericality: {greater_than_or_equal_to: 0.01}
 	validates :title, uniqueness: true
@@ -13,4 +17,19 @@ class Contract < ActiveRecord::Base
     def root_comments
         comments.where parent_id: nil
     end
+
+    def self.search(query)
+        __elasticsearch__.search(
+            {
+                query:{
+                    multi_match: {
+                        query: query,
+                        fields: ['title^5', 'description', 'skill_tags']
+                    }
+                }
+            }
+        )
+    end
 end
+
+Contract.import
