@@ -513,7 +513,7 @@ Contract.create(title: 'Hello World',
 User.delete_all
 
 
-for i in 0..100
+for i in 1..100
   User.create(
               id: i,
               first_name: first_names.sample,
@@ -523,33 +523,34 @@ for i in 0..100
               password: '12345678',
               is_student: true 
 )
-
 end
+for i in 101..200
   User.create(
-              first_name: 'larry',
-              last_name: 'page',
-              corporation: 'Google',
-              email: 'larry@google.com',
+              id: i,
+              first_name: first_names.sample,
+              last_name: last_names.sample,
+              corporation: 'Symantec',
+              school: 'UCLA',
+              email: 'test' + i.to_s + '@yahoo.com',
               password: '12345678',
-              is_student: false
+              profile: "loerereas asdlf",
+              is_student: false 
 )
-  User.create(
-              first_name: 'steve',
-              last_name: 'jobs',
-              corporation: 'Apple',
-              email: 'steve@apple.com',
-              password: '12345678',
-              is_student: false
+end
+for i in 101..200
+  contract = Contract.create(
+              id: i,
+              title: 'Test' + i.to_s + ' Contract',
+              company: "UCLA",
+              description: "TESTING THIS great description. This is kind of long so a few more lines should be good",
+              pay: 2343,
+              deadline: 'May 23rd 2016',
+              owner: i
 )
-  User.create(
-              first_name: 'billy',
-              last_name: 'gates',
-              corporation: 'Microsoft',
-              email: '3commaclub@microsoft.com',
-              password: '12345678',
-              is_student: false
-)
-
+  user = User.find(i)
+  user.contracts << contract
+  user.save!
+end
 
 skill_tags.each do |t|
   SkillTag.find_or_create_by(name: t)
