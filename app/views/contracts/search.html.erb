@@ -17,6 +17,7 @@
                 <div class="contract-description">
                     <h4><%= truncate(strip_tags(contract.description), length: 80) %></h4>
                     <%= link_to 'Show', contract, class:"btn btn-default btn-xs"%>
+	  <%= link_to 'Accept', add_contract_path(contract), class:"btn btn-default btn-xs" %>
                 </div>
             </div>
         </div>

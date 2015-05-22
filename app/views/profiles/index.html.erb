@@ -39,6 +39,7 @@
         <div class="contract-description">
           <h4><%= truncate(strip_tags(contract.description), length: 80) %></h4>
           <%= link_to 'Show', contract, class:"btn btn-default btn-xs"%>
+    <%= link_to 'Mark finished!', finish_contract_path(contract), {class: 'btn btn-primary btn-xs'}%> 
         </div>
       </div>
     </div>
@@ -80,7 +81,7 @@
     <% if (p.worker == c.id)  %>
     <p><strong><%= c.first_name %></strong> is awaiting your approval.</p>
     <br/>
-    <%= link_to "Approve and finish contract", approve_contract_path(p)%>
+    <%= link_to "Approve and finish contract", approve_contract_path(p),class:"btn btn-default btn-xs"%>
     <% end %>
     <% end %>
     <% end %>
@@ -97,7 +98,7 @@
     <% if (p.worker == c.id) %>
     <p><strong><%= c.first_name %></strong> is working on this contract.</p>
     <br/>
-    <%= link_to "Drop Student", reset_contract_path(p) %>
+    <%= link_to "Drop Student", reset_contract_path(p),class:"btn btn-default btn-xs" %>
     <% end %>
     <% end %>
     <% end %>
@@ -111,7 +112,7 @@
     <h3><%= p.title %></h3>
     <p class="contractdescription"><strong>Description:</strong> <%=p.description%></p>
     <p> There are currently <%= p.users.size-1 %> interested students.</p>
-    <%= link_to "See all users", contract_path(p) %>
+    <%= link_to "See all users", contract_path(p) ,class:"btn btn-default btn-xs"%>
     <% end %>
     <%end%>
   </div>  
