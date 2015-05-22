@@ -13,8 +13,8 @@ class Contract < ActiveRecord::Base
     def root_comments
         comments.where parent_id: nil
     end
-
-    searchable do 
-        text :title, :description, :company
-    end
+      def self.search(query)
+              # where(:title, query) -> This would return an exact match of the query
+         where("title like ?", "%#{query}%") 
+      end
 end

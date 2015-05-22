@@ -66,9 +66,5 @@ gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
 
 #search
-gem 'sunspot_rails'
-    group :development do
-        gem 'sunspot_solr'
-    end
 end
 

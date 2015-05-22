@@ -157,16 +157,13 @@ class ContractsController < ApplicationController
   
   # search
   def search
-    if params[:search].nil?
-      @contracts = []
-    else
-      @query = Contract.search do
-        fulltext params[:search]
-      end
-      @contracts = @query.results
-    end
+      @contracts = Contract.all
+                if params[:search]
+                          @contracts = Contract.search(params[:search]).order("created_at DESC")
+                else
+                          @contracts = Contract.all.order("created_at DESC")
+                end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contract

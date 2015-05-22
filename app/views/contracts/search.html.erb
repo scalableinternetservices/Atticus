@@ -1,13 +1,8 @@
 <h1 class="page-header">My Contracts</h1>
-
-<%= form_for search_contract_path, method: :get do |f| %>
-    <p>
-    <%= f.label "Search for" %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Go", name: nil %>
-    </p>
+<%= form_tag(search_contract_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Contracts" %>
+    <%= submit_tag "Search" %>
 <% end %>
-
 <h2>Found <%= pluralize @contracts.count , "contract" %>!</h2>
 <hr/>
 <ul class="contracts-list finished">

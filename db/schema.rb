@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150520204353) do
     t.string   "company",              limit: 255
     t.string   "description",          limit: 255
     t.string   "image_url",            limit: 255
+    t.string   "deadline",             limit: 255
     t.decimal  "pay",                              precision: 10
     t.boolean  "progress",             limit: 1,                  default: false
     t.boolean  "done",                 limit: 1,                  default: false

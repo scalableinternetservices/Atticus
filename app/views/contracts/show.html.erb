@@ -1,5 +1,12 @@
+<%= stylesheet_link_tag "contract" %>
 <div style="overflow: hidden">
+<div class="row">
+<div class="col-sm-2">
+</div>
+<div>
 <h1 class="page-header"><%= @contract.title %></h1>
+</div>
+</div>
 <h3>
   <strong>Company:</strong>
   <%= @contract.company %>
@@ -13,10 +20,13 @@
 <h3>
   <strong>Pay:</strong>
   <%= @contract.pay %>
+</h3><h3>
+  <strong>Deadline:</strong>
+  <%= @contract.deadline %>
 </h3>
 
 <% if (current_user.id == @contract.owner) %>
-    <%= link_to 'edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
+    <%= link_to 'Edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
     <% if @contract.progress == false %>
         <hr style="    padding: 0;
         border: none;
