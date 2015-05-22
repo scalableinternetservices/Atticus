@@ -15,6 +15,6 @@ class Contract < ActiveRecord::Base
     end
       def self.search(query)
               # where(:title, query) -> This would return an exact match of the query
-         where("title like ?", "%#{query}%") 
+         where("title like ? OR company like ? OR description like ?", "%#{query}%", "%#{query}%", "%#{query}%") 
       end
 end

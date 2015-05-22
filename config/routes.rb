@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'contracts/:id/approve' => "contracts#approve", as: :approve_contract
   get 'contracts/:id/finish' => "contracts#finish", as: :finish_contract
   get 'contracts/search' => "contracts#search", as: :search_contract
-  
+  get 'profiles/search' => "profiles#search", as: :search_users 
   resources :profiles do
     get :autocomplete_skill_tag_name, on: :collection
     get :autocomplete_industry_tag_name, on: :collection

@@ -31,21 +31,16 @@
                       <%= image_tag(current_user.avatar.url(:thumb)) %>
                         <figcaption class="ratings">
                             <p>Ratings
+                            <% ((@user.rating_value.to_i)/(@user.rating_count)).times do |x| %>
                             <a href="#">
                                 <span class="fa fa-star"></span>
                             </a>
+                        <% end%>
+                            <% (5-(@user.rating_value.to_i)/(@user.rating_count)).times do |x| %>
                             <a href="#">
-                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star-o"></span>
                             </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                 <span class="fa fa-star-o"></span>
-                            </a> 
+                        <% end%>
                             </p>
                         </figcaption>
                     </figure>

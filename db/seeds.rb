@@ -474,42 +474,6 @@ Contract.delete_all
 
 
 #for i in (0..100)
-Contract.create(title: 'Rails Master',
-  company: 'Google',
-  description:
-    %{
-        We need a rockstar hero programmer
-      },
-  pay: rand(200...1000),
-  progress: 0,
-  done: 0,
-  owner: 0,
-  worker: 0)
-Contract.create(title: 'Django',
-  company: 'Apple',
-  description:
-    %{
-        MVC stuff
-      },
-  pay: rand(200...1000),
-  progress: 0,
-  done: 0,
-  owner: 0,
-  worker: 0
-)
-Contract.create(title: 'Hello World',
-  company: 'Microsoft',
-  description:
-    %{
-        We need a Windows person
-      },
-  pay: rand(200...1000),
-  progress: 0,
-  done: 0,
-  owner: 0,
-  worker: 0)
-#end
-
 User.delete_all
 
 
@@ -521,7 +485,9 @@ for i in 1..100
               school: 'UCLA',
               email: 'test' + i.to_s + '@yahoo.com',
               password: '12345678',
-              is_student: true 
+              is_student: true,
+              rating_value: rand(20..30),
+              rating_count: rand(6..20)
 )
 end
 for i in 101..200
@@ -534,7 +500,9 @@ for i in 101..200
               email: 'test' + i.to_s + '@yahoo.com',
               password: '12345678',
               profile: "loerereas asdlf",
-              is_student: false 
+              is_student: false,
+              rating_value: rand(20..30),
+              rating_count: rand(6..20) 
 )
 end
 for i in 101..200
