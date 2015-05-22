@@ -15,7 +15,7 @@
 </p>
 
 <% if (current_user.id == @contract.owner) %>
-    <%= link_to 'Edit this contract', edit_contract_path %>
+    <%= link_to 'Edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
     <% if @contract.progress == false %>
         <hr style="    padding: 0;
         border: none;
@@ -38,7 +38,7 @@
 <br/>
 
 <div>
-      <%= link_to("Comment on this contract", controller: "comments", action: "new", comment: {contract_id: @contract.id} ) %>
+    <%= link_to("Comment on this contract", {controller: "comments", action: "new", comment: {contract_id: @contract.id}}, class: 'btn btn-primary btn-xs' ) %>
 </div>
 
 <div>
