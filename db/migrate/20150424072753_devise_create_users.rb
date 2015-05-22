@@ -39,6 +39,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :personal_website
       t.string :company_website
       
+      #ratings
+      t.float   :rating_value
+      t.integer :rating_count, default: 0, null: false
 
       t.timestamps
     end
