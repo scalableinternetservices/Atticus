@@ -5,8 +5,13 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @user = User.all
   end
+
+  def progressing
+  end
+
+  def saved
+  end  
 
   # GET /profiles/1
   # GET /profiles/1.json
@@ -80,7 +85,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
    def profile_params
-    params.require(:user).permit(:name, :email, :password, :first_name, :last_name, :corporation, :school, :image_url, :profile, :linkedin_url, :github_url, :personal_website, :company_website)
+    params.require(:user).permit(:name, :email, :password, :first_name, :last_name, :corporation, :school, :image_url, :profile, :linkedin_url, :github_url, :personal_website, :company_website, :avatar)
    end
 
 end

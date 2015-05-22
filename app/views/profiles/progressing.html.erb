@@ -2,13 +2,13 @@
     <h1 class="page-header">My Contracts</h1>
 
     <ul class="nav nav-pills">
-        <li class="active"><a href="#">Finished Contracts</a></li>
-        <li><a href="#">Progressing Contracts</a></li>
+        <li><a href="#">Finished Contracts</a></li>
+        <li class="active"><a href="#">Progressing Contracts</a></li>
         <li><a href="#">Saved Contracts</a></li>
     </ul>
-    <ul class="contracts-list finished">  
+    <ul class="contracts-list progressing">
         <% current_user.contracts.each do |contract| %>
-            <% if (contract.done == true && contract.worker == current_user.id) %>
+            <% if (contract.done == false && contract.progress == true && current_user.id == contract.worker) %>
                 <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
                 <div class="contract-box">
                     <div class="contract-img">
@@ -19,33 +19,36 @@
                         <div class="contract-description">
                             <h4><%= truncate(strip_tags(contract.description), length: 80) %></h4>
                             <%= link_to 'Show', contract, class:"btn btn-default btn-xs"%>
+                            <%= link_to 'Mark finished!', finish_contract_path(contract), {class: 'btn btn-primary btn-xs'}%> 
                         </div>
                     </div>
                 </div>
-                </li>
+                </li>   
             <% end %>
         <% end %>
     </ul>
 <% else %>
 
     <ul class="nav nav-pills">
-        <li class="active"><a href="#">Pending Contracts</a></li>
-        <li><a href="#">Progressing Contracts</a></li>
+        <li><a href="#">Pending Contracts</a></li>
+        <li class="active"><a href="#">Progressing Contracts</a></li>
         <li><a href="#">Waiting Contracts</a></li>
     </ul>
     <tbody>
-        <div id="Pending">   
+        <div id="Progress">
             <% current_user.contracts.each do |p| %>
-                <% if (p.done == true && p.approved == false) %>
+                <% if (p.progress == true && p.done == false) %>
+                    <h3><%= p.title %></h3>
+                    <p class="contractdescription"><strong>Description:</strong> <%=p.description%></p>
                     <% p.users.each do |c| %>
-                        <% if (p.worker == c.id)  %>
-                            <p><strong><%= c.first_name %></strong> is awaiting your approval.</p>
+                        <% if (p.worker == c.id) %>
+                            <p><strong><%= c.first_name %></strong> is working on this contract.</p>
                             <br/>
-                            <%= link_to "Approve and finish contract", approve_contract_path(p),class:"btn btn-default btn-xs"%>
+                            <%= link_to "Drop Student", reset_contract_path(p),class:"btn btn-default btn-xs" %>
                         <% end %>
                     <% end %>
                 <% end %>
             <%end%>
         </div>
-    </tbody>
+    </tbody>    
 <% end %>

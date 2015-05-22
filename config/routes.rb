@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'contracts/:id/finish' => "contracts#finish", as: :finish_contract
   get 'contracts/search' => "contracts#search", as: :search_contract
   get 'profiles/search' => "profiles#search", as: :search_users 
+  get 'profiles/progress' => "profiles#progressing", as: :progressing_profiles
+  get 'profiles/saved' => "profiles#saved", as: :saved_profiles
   resources :profiles do
     get :autocomplete_skill_tag_name, on: :collection
     get :autocomplete_industry_tag_name, on: :collection
@@ -19,7 +21,6 @@ Rails.application.routes.draw do
 
   get 'skill_tags/:id/add' => "skill_tags#add", as: :add_skill_tag
   #profile stuff
-
   
   devise_for :users, :controllers => { :registrations => "registrations" }
   devise_scope :user do
