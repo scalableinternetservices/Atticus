@@ -7,6 +7,7 @@
 <%= form_for @user, url: profile_path(@user), html: { method: :put } do |f| %>
   <%= devise_error_messages! %>
 
+  <% if current_user.is_student %>
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, autofocus: true %>
@@ -16,6 +17,7 @@
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name, autofocus: true %> 
   </div>
+  <% end %>
 
   <% if (!current_user.is_student) %>
     <div class="field"> 
@@ -38,11 +40,11 @@
       <%= f.text_field :school, autofocus: true %>
     </div>
     <div class="field">
-      <%= f.label :linkedin_url %><br />
+      <%= f.label :linkedin_username %><br />
       <%= f.text_field :linkedin_url, autofocus: true %>
     </div>
     <div class="field">
-      <%= f.label :github_url %><br />
+      <%= f.label :github_username %><br />
       <%= f.text_field :github_url, autofocus: true %>
     </div>
     <div class="field">
