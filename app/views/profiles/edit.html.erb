@@ -1,77 +1,103 @@
 <%= javascript_include_tag "application" %>
 <%= stylesheet_link_tag "application" %>
 
+    <div class="container">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-sm-8">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Customize Profile</div>
+                    </div>     
+                    <div style="padding-top:30px" class="panel-body" >
+                      <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                      <%= form_for @user, url: profile_path(@user), html: { method: :put } do |f| %>
 
-<h2>Customize Profile</h2>
+		      <% if current_user.is_student %>
+                      <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
+			<%= f.text_field :first_name, autofocus: true, class:"form-control", placeholder:"First Name" %>
+                      </div>
 
-<%= form_for @user, url: profile_path(@user), html: { method: :put } do |f| %>
-  <%= devise_error_messages! %>
+		      <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
+			<%= f.text_field :last_name, autofocus: true, class:"form-control", placeholder:"Last Name" %>
+                      </div>
+		      <% end %>
 
-  <% if current_user.is_student %>
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
+		      <% if (!current_user.is_student) %>
+		    
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-envolope"></i></span>
+			<%= f.text_field :corporation, autocomplete: "off", class:"form-control", placeholder:"Corporation" %>
+                      </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %> 
-  </div>
-  <% end %>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+			<%= f.text_field :company_website, autocomplete: "off", class:"form-control", placeholder:"Website" %>
+                      </div>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-shopping-card"></i></span>
+			<%= f.autocomplete_field :industry_tag_name, autocomplete_industry_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true, class:"form-control", placeholder:"Industry" %>
+                      </div>
+		     
+  
+		      <% else %>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+			<%= f.text_field :school, autocomplete: "off", class:"form-control", placeholder:"School" %>
+                      </div>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+			<%= f.text_field :linkedin_url, autocomplete: "off", class:"form-control", placeholder:"Linkedin Username" %>
+                      </div>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+			<%= f.text_field :github_url, autocomplete: "off", class:"form-control", placeholder:"Github Username" %>
+                      </div>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+			<%= f.text_field :personal_website, autocomplete: "off", class:"form-control", placeholder:"Personal Website" %>
+                      </div>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+			<%= f.autocomplete_field :skill_tag_name, autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple => true, class:"form-control", placeholder:"Skills" %>
+                      </div>
+		      <% end %>  
+                      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
+			<%= f.file_field :avatar, autocomplete: "off", class:"form-control", placeholder:"Profile Image" %>
+                      </div>
+                                    
 
-  <% if (!current_user.is_student) %>
-    <div class="field"> 
-      <%= f.label :corporation %><br />
-      <%= f.text_field :corporation, autofocus: true %>
+		      <div style="margin-bottom: 25px" class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+			<%= f.text_area :profile, autocomplete: "off", rows: 10, class:"form-control", placeholder:"Profile" %>
+                      </div>
+
+
+
+                            <div style="margin-top:10px" class="form-group">
+                              <!-- Button -->
+                              <div class="col-sm-12 controls">
+				<%= f.submit "Save",class:"btn btn-success" %>
+                              </div>
+                            </div>
+
+			    <% end %>  
+                            <div class="form-group">
+                              <div class="col-md-12 control">
+                                <div style="padding-top:15px; font-size:85%" >
+				  <%= link_to "Back", :back %>
+                             
+</a>
+</div>
+</div>
+</div>  
+
+
+
+
+                        </div>                     
+                    </div>  
+        </div>
+        
     </div>
-
-    <div class="field"> 
-      <%= f.label :company_website %><br />
-      <%= f.text_field :company_website, autofocus: true %>
-    </div>
-    <div class="field">
-      <%= f.label :industry %><br />
-      <%= f.autocomplete_field :industry_tag_name, autocomplete_industry_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true %>
-    </div>
-  <% else %>
-
-    <div class="field">
-      <%= f.label :school %><br />
-      <%= f.text_field :school, autofocus: true %>
-    </div>
-    <div class="field">
-      <%= f.label :linkedin_username %><br />
-      <%= f.text_field :linkedin_url, autofocus: true %>
-    </div>
-    <div class="field">
-      <%= f.label :github_username %><br />
-      <%= f.text_field :github_url, autofocus: true %>
-    </div>
-    <div class="field">
-      <%= f.label :personal_website %><br />
-      <%= f.text_field :personal_website, autofocus: true %>
-    </div>
-    <div class="field">
-      <%= f.label :skills %><br />
-      <%= f.autocomplete_field :skill_tag_name, autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple => true %>
-    </div>
-  <% end %>
-
-
-   <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
-  </div> 
-  <div class="field">
-    <%= f.label :profile %><br />
-    <%= f.text_area :profile, rows: 10, autofocus: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Save" %>
-  </div>
-
-<% end %>
-
-<%= link_to "Back", :back %>
-

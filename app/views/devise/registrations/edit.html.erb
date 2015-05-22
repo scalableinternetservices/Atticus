@@ -1,39 +1,62 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="container">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-sm-8">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Edit Account</div>
+                    </div>     
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+                    <div style="padding-top:30px" class="panel-body" >
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+                          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                       
+					<%= f.email_field :email, autofocus: true, class:"form-control", placeholder:"Email" %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+                                    </div>
+                                
+                            <div style="margin-bottom: 25px" class="input-group">
+			      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"New Password" %>
+                            </div>
+                                    
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+			    <div style="margin-bottom: 25px" class="input-group">
+			      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder:"Confirm Password" %>
+                            </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+			    <div style="margin-bottom: 25px" class="input-group">
+			      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+			      <%= f.password_field :current_confirmation, autocomplete: "off", class:"form-control", placeholder:"Current Password" %>
+                            </div>
+                                
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+                            <div style="margin-top:10px" class="form-group">
+                              <!-- Button -->
+                              <div class="col-sm-12 controls">
+				<%= f.submit "Update",class:"btn btn-success" %>
+                              </div>
+                            </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+			    <% end %>  
+                            <div class="form-group">
+                              <div class="col-md-12 control">
+                                <div style="padding-top:15px; font-size:85%" >
+				  <%= link_to "Back", :back %>
+                             
+</a>
+</div>
+</div>
+</div>  
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+
+                        </div>                     
+                    </div>  
+        </div>
+        
+    </div>
