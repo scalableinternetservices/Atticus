@@ -62,9 +62,9 @@ group :development, :test do
   gem 'spring'
 
 #jquery/autocomplete 
-gem 'jquery-ui-rails'
-gem 'rails4-autocomplete'
 
 #search
 end
 
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'
