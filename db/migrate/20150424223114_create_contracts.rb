@@ -8,6 +8,7 @@ class CreateContracts < ActiveRecord::Migration
       t.decimal :pay
       t.boolean :progress, default: false
       t.boolean :done, default: false
+      t.boolean :approved, default: false
       t.integer :owner
       t.integer :worker
       t.timestamps null: false

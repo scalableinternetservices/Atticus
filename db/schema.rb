@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20150520204353) do
     t.string   "title",                limit: 255
     t.string   "company",              limit: 255
     t.string   "description",          limit: 255
+    t.string   "image_url",            limit: 255
     t.decimal  "pay",                              precision: 10
     t.boolean  "progress",             limit: 1,                  default: false
     t.boolean  "done",                 limit: 1,                  default: false
+    t.boolean  "approved",             limit: 1,                  default: false
     t.integer  "owner",                limit: 4
     t.integer  "worker",               limit: 4
     t.datetime "created_at",                                                      null: false
@@ -92,6 +94,8 @@ ActiveRecord::Schema.define(version: 20150520204353) do
     t.string   "github_url",             limit: 255
     t.string   "personal_website",       limit: 255
     t.string   "company_website",        limit: 255
+    t.float    "rating_value",           limit: 24
+    t.integer  "rating_count",           limit: 4,   default: 0,    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name",             limit: 255
