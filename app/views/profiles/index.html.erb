@@ -3,8 +3,8 @@
 
     <ul class="nav nav-pills">
         <li class="active"><a href="#">Finished Contracts</a></li>
-        <li><a href="#">Progressing Contracts</a></li>
-        <li><a href="#">Saved Contracts</a></li>
+        <li><a href="/profiles/progress">Progressing Contracts</a></li>
+        <li><a href="/profiles/saved">Saved Contracts</a></li>
     </ul>
     <ul class="contracts-list finished">  
         <% current_user.contracts.each do |contract| %>
@@ -30,8 +30,8 @@
 
     <ul class="nav nav-pills">
         <li class="active"><a href="#">Pending Contracts</a></li>
-        <li><a href="#">Progressing Contracts</a></li>
-        <li><a href="#">Waiting Contracts</a></li>
+        <li><a href="/profiles/progress">Progressing Contracts</a></li>
+        <li><a href="/profiles/saved">Waiting Contracts</a></li>
     </ul>
     <tbody>
         <div id="Pending">   
