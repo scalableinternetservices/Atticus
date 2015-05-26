@@ -1,5 +1,5 @@
 class Contract < ActiveRecord::Base
-	validates :title, :description, :company, presence: true
+	validates :title, :description, presence: true
 	validates :pay, numericality: {greater_than_or_equal_to: 0.01}
 	validates :title, uniqueness: true
     has_and_belongs_to_many :users

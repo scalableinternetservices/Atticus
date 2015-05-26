@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/home/ec2-user/opt/tsung-1.5.0/share/tsung/tsung-1.0.dtd">
 <tsung loglevel="notice" version="1.0">
 <clients>
 <client host="localhost" use_controller_vm="true" maxusers="50000"/>
@@ -39,7 +41,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 <request subst="true">
 <dyn_variable name="created_user_url" re="[Ll]ocation: (http://.*)\r"/>
 <dyn_variable name="created_user_id" re="[Ll]ocation: http://.*/users/(.*)\r"/>
-<http url="/users" version="1.1" method="POST" contents="Email=%%_created_user_id%%@yahoo.com&Password=12345678&Password confirmation=12345678&commit=Log+In"></http>
+<http url="/users" version="1.1" method="POST" contents="Email=%%_created_user_id%%@yahoo.com&amp;Password=12345678&amp;Password confirmation=12345678&amp;commit=Log+In"></http>
 </request>
 <thinktime value="2" random="true"></thinktime>
 <request subst="true">
@@ -55,7 +57,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
        url='/profiles/1/edit'
        version='1.1'
        method='POST'
-       contents='First%5BName%5D=First&amp;Last%5Name%5D=Last&amp;School%5B=TestSchool&amp;Profile=TestProfile&amp;commit=Save'>
+       contents='First%5BName%5D=First&amp;Last%5BName%5D=Last&amp;School%5B=TestSchool&amp;Profile%5B=TestProfile&amp;commit=Save'>
        </http>
      </request>
 <thinktime value="2" random="true"></thinktime>
@@ -77,3 +79,4 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 </session>
 </sessions>
 </tsung>
+
