@@ -1,5 +1,8 @@
-<%= form_for(@contract) do |f| %>
-  <% if @contract.errors.any? %>
+<div class="container">
+<div class="row">
+  
+  <%= form_for(@contract) do |f| %>
+     <% if @contract.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contract.errors.count, "error") %> prohibited this contract from being saved:</h2>
 
@@ -10,34 +13,52 @@
       </ul>
     </div>
   <% end %>
+    <div class="col-lg-6">
+      <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok"></i> Required Field</strong></div>
+      <div class="form-group">
+        <label for="InputName">Title</label>
+        <div class="input-group">
+	  <%= f.text_field :title, autocomplete:"off", class:"form-control", placeholder:"Enter Title" %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span></div>
+      </div>
+      <%= f.hidden_field :company, value: current_user.corporation %>
+      <div class="form-group">
+        <label for="InputEmail">Pay</label>
+        <div class="input-group">
+	  <%= f.text_field :pay, class:"form-control", placeholder:"Enter Pay" %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span></div>
+      </div>
+      <div class="form-group">
+        <label for="InputEmail">Deadline</label>
+        <div class="input-group">
+	  <%= f.text_field :deadline, class:"form-control", placeholder:"Enter Pay" %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span></div>
+      </div>
+      <div class="form-group">
+        <label for="InputMessage">Description</label>
+        <div class="input-group">
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <%= f.hidden_field :company, value: current_user.corporation %>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, rows: 6 %>
-  </div>
-  <div class="field">
-    <%= f.label :picture %><br>
-    <%= f.file_field :picture %>
-  </div>
-  <div class="field">
-    <%= f.label :pay %><br>
-    <%= f.text_field :pay %>
-  </div><div class="field">
-    <%= f.label :deadline %><br>
-    <%= f.text_field :deadline %>
-  </div>
+    <%= f.text_area :description, rows: 6, class:"form-control", placeholder:"Short Description" %>
+       
+          <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span></div>
+      </div>
+      <div class="form-group">
+        <label for="InputReal">Photo</label>
+        <div class="input-group">
+          <%= f.file_field :picture, class:"form-control", placeholder:"Contract Image" %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span></div>
+      </div>
+      <div class="form-group">
+        <label for="InputReal">Skills</label>
+        <div class="input-group">
+           <%= autocomplete_field_tag :skill_tag_name, params[:name], autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true, class:"form-control", placeholder:"Enter your skills" %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span></div>
+      </div>
+       <%= f.submit "Create", class:"btn btn-info pull-right"  %>
+    
+    </div>
+ <% end %>
+  
+</div>
 
-<div class="field">
-    <%= f.label :skills_required %><br />
-    <%= autocomplete_field_tag :skill_tag_name, params[:name], autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
