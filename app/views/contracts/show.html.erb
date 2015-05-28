@@ -4,26 +4,47 @@
 <div class="col-sm-2">
 </div>
 <div>
-<h1 class="page-header"><%= @contract.title %></h1>
 </div>
 </div>
-<h3>
-  <strong>Company:</strong>
-  <%= @contract.company %>
-</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="<%= @contract.picture %>" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4><%= @contract.title %></h4>
+                        <small><cite title="San Francisco, USA"><%= @contract.company %>  <i class="glyphicon glyphicon-briefcase">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-star"></i>  Pay: $<%= @contract.pay %>
+                            <br />
+                            <i class="glyphicon glyphicon-globe"></i> Description: <%= @contract.description %>
+                            <br />
+                            <i class="glyphicon glyphicon-gift"></i>  Deadline: <%= @contract.deadline %></p>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">
+                                Skills Required</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span><span class="sr-only">Social</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+			       <% @contract.skill_tags.each do |k| %>
+			       <li><a href="#"><%= k.name %></a></li>
 
-<h3>
-  <strong>Description:</strong>
-  <%= @contract.description %>
-</h3>
-
-<h3>
-  <strong>Pay:</strong>
-  <%= @contract.pay %>
-</h3><h3>
-  <strong>Deadline:</strong>
-  <%= @contract.deadline %>
-</h3>
+			       <% end %>
+			       
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <% if (current_user.id == @contract.owner) %>
     <%= link_to 'Edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
