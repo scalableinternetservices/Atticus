@@ -65,7 +65,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 			 user%5Bschool%5D=UCLA&amp;
 			 user%5Blinkedin_url%5D=test&amp;
 			 user%5Bgithub_url%5D=test&amp;
-			 user%5Bskill_tag_name%5D=Ruby,&amp;
+			 user%5Bskill_tag_name%5D=&amp;
 			 user%5Bprofile%5D=test_profile_ruby&amp;
 			 commit=Save'>
 		</http>

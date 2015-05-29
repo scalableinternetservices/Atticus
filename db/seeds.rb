@@ -477,7 +477,7 @@ Contract.delete_all
 User.delete_all
 
 
-for i in 1..10000
+for i in 1..100
   User.create(
               id: i,
               first_name: first_names.sample,
@@ -490,7 +490,7 @@ for i in 1..10000
               rating_count: rand(6..20)
 )
 end
-for i in 10001..20000
+for i in 101..200
   User.create(
               id: i,
               first_name: first_names.sample,
@@ -505,7 +505,7 @@ for i in 10001..20000
               rating_count: rand(6..20) 
 )
 end
-for i in 1..20000
+for i in 1..200
   contract = Contract.create(
               id: i,
               title: 'Test' + i.to_s + ' Contract',
@@ -515,8 +515,8 @@ for i in 1..20000
               deadline: 'May 23rd 2016',
               owner: i
 )
-  if (i <= 10000)
-    user = User.find(i+10000)
+  if (i <= 100)
+    user = User.find(i+100)
   else
     user = User.find(i)
   end
@@ -533,7 +533,7 @@ industry_tags.each do |t|
 end
 
 #add skills
-for i in 1..10000
+for i in 1..100
   num = rand(5..15)
   user = User.find(i)
   for k in 0..num
@@ -545,7 +545,7 @@ for i in 1..10000
 end
 
 #add industries
-for i in 10001..20000
+for i in 101..200
   num = rand(5..15)
   user = User.find(i)
   for k in 0..num
