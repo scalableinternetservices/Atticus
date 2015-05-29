@@ -5,7 +5,7 @@
 <client host="localhost" use_controller_vm="true" maxusers="50000"/>
 </clients>
 <servers>
-<server host="ec2-52-26-3-67.us-west-2.compute.amazonaws.com" port="80" type="tcp"/>
+<server host="ec2-52-25-228-42.us-west-2.compute.amazonaws.com" port="80" type="tcp"/>
 </servers>
 <load>
     <arrivalphase phase="1" duration="1" unit="second">
@@ -43,29 +43,11 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
         </request>
 
 	<!--- redirected to edit profile url -->
-	<request substr="true">
+	<request subst="true">
 		<http
 			url="%%_edit_profile_url%%"
 			version="1.1"
 			method="GET">
-		</http>
-	</request>
-
-	<!--- filling out edit profile -->
-	<thinktime random='true' value='15'/>
-
-	<!--- submit edit profile post request -->
-	<request substr="true">
-		<http
-			url="/profiles/%%_user_id"
-			version="1.1"
-			method="PUT"
-			contents="user%5Bcorporation%5D=%%_random_email_id%%&amp;
-				user%5Bcompany_website%5D=&amp;
-				user%5Bindustry_tag_name%5D=&amp;
-				user%5Bprofile%5D=web+programming+firm&amp;
-				commit=Save&amp;
-				id=%%_user_id%%">
 		</http>
 	</request>
 
@@ -82,7 +64,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
         </request>
 
         <!--- filling out the new contract form -->
-        <thinktime random='true' value='30'/>
+        <thinktime random='true' value='2'/>
         <setdynvars sourcetype="random_number" start="20" end="1000">
                 <var name="random_price"/>
         </setdynvars>
@@ -123,7 +105,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
                 </http>
         </request>
 
-        <thinktime random="true" value="5"/>
+        <thinktime random="true" value="2"/>
 
         <request subst="true">
                 <http url="/profiles/1" version="1.1" method="GET">
