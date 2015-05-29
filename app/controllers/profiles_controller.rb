@@ -27,20 +27,21 @@ class ProfilesController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+    
     if (current_user.is_student)
-      result = params[:user][:skill_tag_name][0].split(",")
-      result.each do |k|
-        skill = SkillTag.find_by_name(k)
-        current_user.skill_tags << skill
-        current_user.save!
-      end
+        result = params[:skill_tag_name].split(",")
+        result.each do |k|
+          skill = SkillTag.find_by_name(k)
+          @user.skill_tags << skill
+          @user.save!
+        end
     else
-      result = params[:user][:industry_tag_name][0].split(",")
-      result.each do |k|
-        industry = IndustryTag.find_by_name(k)
-        current_user.industry_tags << industry
-        current_user.save!
-      end
+        result = params[:industry_tag_name].split(",")
+        result.each do |k|
+          industry = IndustryTag.find_by_name(k)
+          @user.industry_tags << industry
+          @user.save!
+        end
     end
     
       respond_to do |format|

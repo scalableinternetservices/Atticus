@@ -48,7 +48,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 			url="/users" 
 			version="1.1"
 			method="POST"
-			contents='user%5Bemail%5D=random_email_%%_random_email_id%%%40gmail.com&amp;user%5Bpassword%5D=12345678&amp;user%5Bpassword_confirmation%5D=12345678&amp;user%5Bis_student%5D=true&amp;commit=Sign+up'>
+			contents='user%5Bemail%5D=random_email_%%_random_email_id%%%40gmail.com&amp;user%5Bpassword%5D=12345678&amp;user%5Bpassword_confirmation%5D=12345678&amp;user%5Bis_student%5D=false&amp;commit=Sign+up'>
 		</http>
 	</request>
 	<!--- redirected to homepage! -->
@@ -78,9 +78,10 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 	<setdynvars sourcetype="random_number" start="20" end="1000">
 		<var name="random_price"/>
 	</setdynvars>
-<!---	
+
 	<request subst="true">
 		<dyn_variable name="contract_url" re="Location: (http://.*)\r"/>
+
 		<http
 			url="/contracts"
 			version="1.1"
@@ -88,6 +89,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 			contents='contract%5Btitle%5D=test+contract+%%_random_email_id%%&amp;contract%5Bcompany%5D=&amp;contract%5Bpay%5D=%%_random_price%%&amp;contract%5Bdeadline%5D=ASAP&amp;contract%5Bdescription%5D=no+description&amp;skill_tag_name=&amp;commit=Create'>
 		</http>
 	</request>
+
 	<request subst="true">
 		<http
 			url="%%_contract_url%%"
@@ -95,7 +97,7 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 			method="GET">
 		</http>
 	</request>
--->	
+
 	<!--- searching for users -->
 	<request subst="true">
 		<http
