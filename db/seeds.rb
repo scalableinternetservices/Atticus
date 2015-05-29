@@ -519,6 +519,7 @@ for i in 1..20000
     user = User.find(i+10000)
   else
     user = User.find(i)
+  end
   user.contracts << contract
   user.save!
 end
