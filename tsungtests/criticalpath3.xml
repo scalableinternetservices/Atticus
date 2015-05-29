@@ -44,17 +44,37 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 	</setdynvars>
 	<request subst="true">
 		<dyn_variable name="edit_profile_url" re="Location: (http://.*)\r"/>
+<dyn_variable name="user_id" re="[Ll]ocation: http://.*/profiles/(.*)/edit\r"/>
 		<http 
 			url="/users" 
 			version="1.1"
 			method="POST"
-			contents='user%5Bemail%5D=random_email_%%_random_email_id%%%40gmail.com&amp;user%5Bpassword%5D=12345678&amp;user%5Bpassword_confirmation%5D=12345678&amp;user%5Bis_student%5D=true&amp;commit=Sign+up'>
+			contents='user%5Bemail%5D=student_%%_random_email_id%%%40gmail.com&amp;user%5Bpassword%5D=12345678&amp;user%5Bpassword_confirmation%5D=12345678&amp;user%5Bis_student%5D=true&amp;commit=Sign+up'>
 		</http>
 	</request>
 	<!--- redirected to homepage! -->
+
+	<request subst="true">
+		<http 
+			url="/profiles/%%user_id%%/edit" 
+			version="1.1"
+			method="PUT"
+			contents=
+			'user%5Bfirst_name%5D=Lawrence%%random_email_id_&amp;
+			 user%5Blast_name%5D=Yuan%%random_email_id_&amp;
+			 user%5Bschool%5D=UCLA&amp;
+			 user%5Blinkedin_url%5D=test&amp;
+			 user%5Bgithub_url%5D=test&amp;
+			 user%5Bskill_tag_name%5D=Ruby,&amp;
+			 user%5Bprofile%5D=test_profile_ruby&amp;
+			 commit=Save'>
+		</http>
+	</request>
+
+	<!--- see own profile -->
 	<request subst="true">
 		<http
-			url='/profiles'
+			url='/profiles/%%user_id%%'
 			version='1.1'
 			method='GET'>
 		</http>
@@ -63,19 +83,26 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 	<!--- check the subscriptions -->
 	<thinktime random='true' value='1'/>
 
-	<!--- make new contract -->
-	<request subst="true">
-		<http
-			url='/contracts/new'
-			version='1.1'
-			method='GET'>
-		</http>
-	</request>
 
-	<!--- searching for users -->
+
+	<!--- browse for users -->
 	<request subst="true">
 		<http
 			url="/profiles/search"
+			version="1.1"
+			method="GET">
+		</http>
+	</request>
+
+
+	<!--- look at results users -->
+	<thinktime random="true" value="5"/>
+	
+
+	<!--- browse for contracts -->
+	<request subst="true">
+		<http
+			url="/contracts/search"
 			version="1.1"
 			method="GET">
 		</http>
@@ -84,23 +111,15 @@ Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox
 	<!--- search for useres with ruby in description -->
 	<request subst="true">
 		<http
-			url="/profiles/search?utf8=%E2%9C%93&amp;search=ruby&amp;commit=Search"
+			url="/contracts/search?utf8=%E2%9C%93&amp;search=web&amp;commit=Search"
 			version="1.1"
 			method="GET">
 		</http>
 	</request>
-
+	
 	<!--- look at results users -->
 	<thinktime random="true" value="5"/>
-	
-	<!--- go to random user profile -->
-	<request subst="true">
-		<http
-			url="/profiles/1"
-			version="1.1"
-			method="GET">
-		</http>
-	</request>	
+
 </session>
 </sessions>
 </tsung>
