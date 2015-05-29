@@ -36,7 +36,8 @@
                       </div>
 		      <div style="margin-bottom: 25px" class="input-group">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-shopping-card"></i></span>
-			<%= f.autocomplete_field :industry_tag_name, autocomplete_industry_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true, class:"form-control", placeholder:"Industry" %>
+			<%= autocomplete_field_tag :industry_tag_name, params[:name], autocomplete_industry_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true, class:"form-control", placeholder:"Enter your Industries" %>
+		
                       </div>
 		     
   
@@ -59,7 +60,7 @@
                       </div>
 		      <div style="margin-bottom: 25px" class="input-group">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-			<%= f.autocomplete_field :skill_tag_name, autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple => true, class:"form-control", placeholder:"Skills" %>
+			<%= autocomplete_field_tag :skill_tag_name, params[:name], autocomplete_skill_tag_name_profiles_path, 'data-delimiter' => ',', :multiple =>true, class:"form-control", placeholder:"Enter your skills" %>
                       </div>
 		      <% end %>  
                       <div style="margin-bottom: 25px" class="input-group">

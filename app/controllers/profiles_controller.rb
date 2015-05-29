@@ -29,23 +29,19 @@ class ProfilesController < ApplicationController
 
     
     if (current_user.is_student)
-      if (!params[:user][:skill_tag_name].blank?)
-        result = params[:user][:skill_tag_name][0].split(",")
+        result = params[:skill_tag_name].split(",")
         result.each do |k|
           skill = SkillTag.find_by_name(k)
-          current_user.skill_tags << skill
-          current_user.save!
+          @user.skill_tags << skill
+          @user.save!
         end
-      end
     else
-      if (!params[:user][:industry_tag_name].blank?)
-        result = params[:user][:industry_tag_name][0].split(",")
+        result = params[:industry_tag_name].split(",")
         result.each do |k|
           industry = IndustryTag.find_by_name(k)
-          current_user.industry_tags << industry
-          current_user.save!
+          @user.industry_tags << industry
+          @user.save!
         end
-      end
     end
     
       respond_to do |format|

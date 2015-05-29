@@ -32,13 +32,13 @@ class ContractsController < ApplicationController
       current_user.contracts << @contract
 
       #skills
-
-      result = params[:skill_tag_name].split(",")
-      result.each do |k|
-        skill = SkillTag.find_by_name(k)
-        @contract.skill_tags << skill
-        @contract.save!
-      end
+      
+        result = params[:skill_tag_name].split(",")
+        result.each do |k|
+          skill = SkillTag.find_by_name(k)
+          @contract.skill_tags << skill
+          @contract.save!
+        end
       respond_to do |format|
         if @contract.save
           format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
