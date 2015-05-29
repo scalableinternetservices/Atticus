@@ -534,7 +534,7 @@ end
 
 #add skills
 for i in 1..100
-  num = rand(5..15)
+  num = rand(3..5)
   user = User.find(i)
   for k in 0..num
     num2 = rand(1..skill_tags.size-1)
@@ -546,7 +546,7 @@ end
 
 #add industries
 for i in 101..200
-  num = rand(5..15)
+  num = rand(3..5)
   user = User.find(i)
   for k in 0..num
     num2 = rand(1..industry_tags.size-1)
