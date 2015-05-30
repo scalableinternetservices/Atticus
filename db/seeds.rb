@@ -468,10 +468,9 @@ industry_tags = Array["Abortion Policy/Anti-Abortion",
 "Venture Capital",
 "Waste Management",
 "Wine, Beer & Liquor",
-"Women's Issues "]
+"Women's Issues"]
 
 Contract.delete_all
-
 
 #for i in (0..100)
 User.delete_all
@@ -490,6 +489,7 @@ for i in 1..100
               rating_count: rand(6..20)
 )
 end
+
 for i in 101..200
   User.create(
               id: i,
@@ -505,6 +505,7 @@ for i in 101..200
               rating_count: rand(6..20) 
 )
 end
+
 for i in 1..200
   contract = Contract.create(
               id: i,

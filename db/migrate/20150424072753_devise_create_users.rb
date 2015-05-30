@@ -2,7 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Database authenticatable
-      t.string :email,              unique: true, null: false, default: ""
+      t.string :email,              unique: false, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.boolean :is_student, default: true
 
