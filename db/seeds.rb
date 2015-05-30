@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 first_names = Array["Liam","Emma","Noah","Olivia","Mason","Sophia",
 "Ethan","Ava",	    		
 	"Logan",	"Isabella",	    		
@@ -477,51 +478,63 @@ Contract.delete_all
 User.delete_all
 
 
-for i in 1..100
-  User.create(
-              id: i,
-              first_name: first_names.sample,
-              last_name: last_names.sample,
-              school: 'UCLA',
-              email: 'test' + i.to_s + '@yahoo.com',
-              password: '12345678',
-              is_student: true,
-              rating_value: rand(20..30),
-              rating_count: rand(6..20)
+
+
+for i in 1..9000
+  if (User.count<9001)
+    User.create(
+                
+                
+                first_name: first_names.sample,
+                last_name: last_names.sample,
+                school: 'UCLA',
+                email: 'test' + i.to_s + '@yahoo.com',
+                password: '12345678',
+                is_student: true,
+                rating_value: 20,
+                rating_count: 5
+              
 )
-end
-for i in 101..200
-  User.create(
-              id: i,
-              first_name: first_names.sample,
-              last_name: last_names.sample,
-              corporation: 'Symantec',
-              school: 'UCLA',
-              email: 'test' + i.to_s + '@yahoo.com',
-              password: '12345678',
-              profile: "loerereas asdlf",
-              is_student: false,
-              rating_value: rand(20..30),
-              rating_count: rand(6..20) 
-)
-end
-for i in 1..200
-  contract = Contract.create(
-              id: i,
-              title: 'Test' + i.to_s + ' Contract',
-              company: "UCLA",
-              description: "TESTING THIS great description. This is kind of long so a few more lines should be good",
-              pay: 2343,
-              deadline: 'May 23rd 2016',
-              owner: i
-)
-  if (i <= 100)
-    user = User.find(i+100)
-  else
-    user = User.find(i)
   end
-  user.contracts << contract
-  user.save!
+end
+for i in 9001..10000
+  if (User.count<10000)
+    User.create(
+                
+                first_name: first_names.sample,
+                last_name: last_names.sample,
+                corporation: 'Symantec',
+                school: 'UCLA',
+                email: 'test' + i.to_s + '@yahoo.com',
+                password: '12345678',
+                profile: "loerereas asdlf",
+                is_student: false,
+                rating_value: 20,
+                rating_count: 5 
+                )
+  end
+end
+for k in 1..5
+  for i in 9001..10000
+    if (Contract.count < 5001)
+      contract = Contract.create(
+                                 
+                               title: 'Test' + i.to_s + ' Contract',
+                               company: "UCLA",
+                               description: "TESTING THIS great description. This is kind of long so a few more lines should be good",
+                               pay: 2343,
+                               deadline: 'May 23rd 2016',
+                               owner: i
+                                 )
+      
+      
+      user = User.find(i)
+     
+    
+      user.contracts << contract
+      user.save!
+    end
+  end
 end
 
 skill_tags.each do |t|
@@ -533,8 +546,8 @@ industry_tags.each do |t|
 end
 
 #add skills
-for i in 1..100
-  num = rand(3..5)
+for i in 1..9000
+  num = 5
   user = User.find(i)
   for k in 0..num
     num2 = rand(1..skill_tags.size-1)
@@ -545,8 +558,8 @@ for i in 1..100
 end
 
 #add industries
-for i in 101..200
-  num = rand(3..5)
+for i in 9001..10000
+  num = 3
   user = User.find(i)
   for k in 0..num
     num2 = rand(1..industry_tags.size-1)
