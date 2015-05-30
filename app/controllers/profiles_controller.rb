@@ -29,19 +29,23 @@ class ProfilesController < ApplicationController
 
     
     if (current_user.is_student)
+      if (!params[:skill_tag_name].nil?)
         result = params[:skill_tag_name].split(",")
         result.each do |k|
           skill = SkillTag.find_by_name(k)
           @user.skill_tags << skill
           @user.save!
         end
+        end
     else
+      if (!params[:skill_tag_name].nil?)
         result = params[:industry_tag_name].split(",")
         result.each do |k|
           industry = IndustryTag.find_by_name(k)
           @user.industry_tags << industry
           @user.save!
         end
+      end
     end
     
       respond_to do |format|
