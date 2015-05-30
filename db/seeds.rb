@@ -469,10 +469,9 @@ industry_tags = Array["Abortion Policy/Anti-Abortion",
 "Venture Capital",
 "Waste Management",
 "Wine, Beer & Liquor",
-"Women's Issues "]
+"Women's Issues"]
 
 Contract.delete_all
-
 
 #for i in (0..100)
 User.delete_all
@@ -485,8 +484,8 @@ for i in 1..9000
     User.create(
                 
                 
-                first_name: first_names.sample,
-                last_name: last_names.sample,
+                first_name: 'first',
+                last_name: 'last',
                 school: 'UCLA',
                 email: 'test' + i.to_s + '@yahoo.com',
                 password: '12345678',
@@ -497,12 +496,13 @@ for i in 1..9000
 )
   end
 end
+
 for i in 9001..10000
   if (User.count<10000)
     User.create(
                 
-                first_name: first_names.sample,
-                last_name: last_names.sample,
+                first_name: 'first',
+                last_name: 'last',
                 corporation: 'Symantec',
                 school: 'UCLA',
                 email: 'test' + i.to_s + '@yahoo.com',
@@ -537,6 +537,7 @@ for k in 1..5
   end
 end
 
+
 skill_tags.each do |t|
   SkillTag.find_or_create_by(name: t)
 end
@@ -547,11 +548,10 @@ end
 
 #add skills
 for i in 1..9000
-  num = 5
+  num = 2
   user = User.find(i)
   for k in 0..num
-    num2 = rand(1..skill_tags.size-1)
-    skill = SkillTag.find(num2)
+    skill = SkillTag.find(k)
     user.skill_tags << skill
     user.save!
   end
@@ -559,11 +559,10 @@ end
 
 #add industries
 for i in 9001..10000
-  num = 3
+  num = 2
   user = User.find(i)
   for k in 0..num
-    num2 = rand(1..industry_tags.size-1)
-    industry = IndustryTag.find(num2)
+    industry = IndustryTag.find(k)
     user.industry_tags << industry
     user.save!
   end
