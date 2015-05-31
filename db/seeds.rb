@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
+=begin
 first_names = Array["Liam","Emma","Noah","Olivia","Mason","Sophia",
 "Ethan","Ava",	    		
 	"Logan",	"Isabella",	    		
@@ -545,6 +545,7 @@ end
 industry_tags.each do |t|
   IndustryTag.find_or_create_by(name: t)
 end
+=end
 =begin
 #add skills
 for i in 1..9000
