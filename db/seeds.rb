@@ -514,7 +514,7 @@ for i in 9001..10000
                 )
  # end
 end
-for k in 1..5
+
   for i in 9001..10000
   #  if (Contract.count < 5001)
       contract = Contract.create(
@@ -535,7 +535,7 @@ for k in 1..5
       user.save!
  #   end
   end
-end
+
 
 
 skill_tags.each do |t|
