@@ -545,7 +545,7 @@ end
 industry_tags.each do |t|
   IndustryTag.find_or_create_by(name: t)
 end
-
+=begin
 #add skills
 for i in 1..9000
   num = 2
@@ -567,4 +567,4 @@ for i in 9001..10000
     user.save!
   end
 end
-
+=end
