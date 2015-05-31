@@ -480,7 +480,7 @@ User.delete_all
 
 
 for i in 1..9000
-  if (User.count<9001)
+#  if (User.count<9001)
     User.create(
                 
                 
@@ -494,11 +494,11 @@ for i in 1..9000
                 rating_count: 5
               
 )
-  end
+ # end
 end
 
 for i in 9001..10000
-  if (User.count<10000)
+ # if (User.count<10000)
     User.create(
                 
                 first_name: 'first',
@@ -512,11 +512,11 @@ for i in 9001..10000
                 rating_value: 20,
                 rating_count: 5 
                 )
-  end
+ # end
 end
 for k in 1..5
   for i in 9001..10000
-    if (Contract.count < 5001)
+  #  if (Contract.count < 5001)
       contract = Contract.create(
                                  
                                title: 'Test' + i.to_s + ' Contract',
@@ -533,7 +533,7 @@ for k in 1..5
     
       user.contracts << contract
       user.save!
-    end
+ #   end
   end
 end
 
