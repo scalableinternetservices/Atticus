@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
       thumb: '130x130>',
       square: '200x200#',
       medium: '300x300>'
-  }
+  },
+  :default_url => '/images/avatar/missing.jpg'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   # Only accepts school emails if student
   #  validates_format_of :email, :with => /\A(\S+)@(.+)\.(edu)\z/, :if => :is_student, :message => "Students must register with a .edu email address"

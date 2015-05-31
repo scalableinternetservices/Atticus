@@ -24,7 +24,6 @@
 	<% if user_signed_in? %>
 	<% if current_user.is_student %>
         <li class="navbar-link"><a href="/">Welcome <%= current_user.first_name %>!</a></li>
-        <li class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb)) %></li>
 	<% else %>
 	  <li class="navbar-link"><a href="/">Welcome <%= current_user.corporation %> corporation!</a></li>
 	<% end %>
