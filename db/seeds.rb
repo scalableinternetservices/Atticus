@@ -551,7 +551,7 @@ for i in 1..9000
   num = 2
   user = User.find(i)
   for k in 0..num
-    skill = SkillTag.find(k)
+    skill = SkillTag.find(k+1)
     user.skill_tags << skill
     user.save!
   end
@@ -562,7 +562,7 @@ for i in 9001..10000
   num = 2
   user = User.find(i)
   for k in 0..num
-    industry = IndustryTag.find(k)
+    industry = IndustryTag.find(k+1)
     user.industry_tags << industry
     user.save!
   end
