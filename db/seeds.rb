@@ -483,7 +483,7 @@ for i in 1..9000
 #  if (User.count<9001)
     User.create(
                 
-                
+                id: i,
                 first_name: 'first',
                 last_name: 'last',
                 school: 'UCLA',
@@ -500,7 +500,7 @@ end
 for i in 9001..10000
  # if (User.count<10000)
     User.create(
-                
+                id: i,
                 first_name: 'first',
                 last_name: 'last',
                 corporation: 'Symantec',
