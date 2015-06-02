@@ -3,9 +3,10 @@
     <%= text_field_tag :search, params[:search], placeholder: "Search Contracts" %>
     <%= submit_tag "Search" %>
 <% end %>
-<h2>Found <%= pluralize @contracts.count , "contract" %>!</h2>
+<h2>Found <%= pluralize @contracts.total_count , "contract" %>!</h2>
 <hr/>
 <ul class="contracts-list finished">
+    <%= paginate @contracts %>
     <% @contracts.each do |contract| %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
         <div class="contract-box">

@@ -5,7 +5,7 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all
+    @contracts = Contract.all.page(params[:page]).per(15)
   end
 
   # GET /contracts/1
@@ -157,11 +157,10 @@ class ContractsController < ApplicationController
   
   # search
   def search
-      @contracts = Contract.all
                 if params[:search]
-                          @contracts = Contract.search(params[:search]).order("created_at DESC")
+                          @contracts = Contract.search(params[:search]).order("created_at DESC").page(params[:page]).per(15)
                 else
-                          @contracts = Contract.all.order("created_at DESC")
+                          @contracts = Contract.all.order("created_at DESC").page(params[:page]).per(15)
                 end
   end
   private
