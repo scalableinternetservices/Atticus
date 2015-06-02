@@ -484,8 +484,8 @@ for i in 1..9000
     User.create(
                 
                 id: i,
-                first_name: 'first',
-                last_name: 'last',
+                first_name: first_names.sample, 
+                last_name: last_names.sample,
                 school: 'UCLA',
                 email: 'test' + i.to_s + '@yahoo.com',
                 password: '12345678',
@@ -501,8 +501,8 @@ for i in 9001..10000
  # if (User.count<10000)
     User.create(
                 id: i,
-                first_name: 'first',
-                last_name: 'last',
+                first_name: first_names.sample, 
+                last_name: last_names.sample,
                 corporation: 'Symantec',
                 school: 'UCLA',
                 email: 'test' + i.to_s + '@yahoo.com',
@@ -535,7 +535,7 @@ end
       user.save!
  #   end
   end
-
+ 
 
 
 skill_tags.each do |t|
@@ -546,7 +546,6 @@ industry_tags.each do |t|
   IndustryTag.find_or_create_by(name: t)
 end
 
-=begin
 #add skills
 for i in 1..9000
   num = 2
@@ -568,4 +567,14 @@ for i in 9001..10000
     user.save!
   end
 end
-=end
+   
+# add contracts skills
+for i in 2..988
+  num = 2
+  contract = Contract.find(i)
+  for k in 0..num
+    skill = SkillTag.find(k+1)
+    contract.skill_tags << skill
+    contract.save!
+  end
+end
