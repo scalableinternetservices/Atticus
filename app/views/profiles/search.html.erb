@@ -9,9 +9,12 @@
     <% @users.each do |user| %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
         <div class="contract-box">
+            <div class="row">
+                <div class="col-sm-2">
             <div class="contract-img">
                <%= image_tag(user.avatar.url(:thumb)) %>             </div>
-            <div class="contract-text">
+            </div>
+            <div class="col-sm-3 contract-text">
                 <h4 class="contract-title"><%= user.first_name %> <%= user.last_name %></h4>
                 <div class="contract-description">
                     <h4><%= truncate(strip_tags(user.profile), length: 80) %></h4>
