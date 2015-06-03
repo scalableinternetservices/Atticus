@@ -41,6 +41,7 @@
                     <p class="contractdescription"><strong>Description:</strong> <%=p.description%></p>
                     <p> There are currently <%= p.users.size-1 %> interested students.</p>
                     <%= link_to "See all users", contract_path(p) ,class:"btn btn-default btn-xs"%>
+                    <%= link_to "Delete Contract", destroy_contract_path(p) ,class:"btn btn-default btn-xs"%>
                 <% end %>
             <%end%>
         </div>  

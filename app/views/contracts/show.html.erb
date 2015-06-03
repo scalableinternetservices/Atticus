@@ -48,6 +48,7 @@
 
 <% if (current_user.id == @contract.owner) %>
     <%= link_to 'Edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
+    <%= link_to 'Delete this contract', destroy_contract_path, {class: 'btn btn-primary btn-xs'} %>
     <% if @contract.progress == false %>
         <hr style="    padding: 0;
         border: none;
