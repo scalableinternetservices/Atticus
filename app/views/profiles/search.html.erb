@@ -11,7 +11,9 @@
 <hr/>
 <% if current_user.is_student %>
 <ul class="contracts-list finished">
+    <% cache(cache_key_for_users) do %>
     <% @users.each do |user| %>
+        <% cache(cache_key_for_user_row(user)) do %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
         <div class="contract-box">
             <div class="row">
@@ -29,10 +31,14 @@
         </div>
         </li>
     <% end %>
+    <% end %>
+    <% end %>
 </ul>
 <% else %>
 <ul class="contracts-list finished">
+    <% cache(cache_key_for_users) do %>
     <% @users.each do |user| %>
+        <% cache(cache_key_for_user_row(user)) do %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
         <div class="contract-box">
             <div class="row">
@@ -49,6 +55,8 @@
             </div>
         </div>
         </li>
+    <% end %>
+    <% end %>
     <% end %>
 </ul>
 <% end %>
