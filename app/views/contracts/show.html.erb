@@ -58,6 +58,7 @@
             <% if u.is_student %>
                 <p><strong><%= u.first_name %></strong> is interested in this contract!</p>
                 <%= link_to 'Assign student', start_contract_path(:worker => u.id), {class: 'btn btn-primary btn-xs'} %>
+                <%= link_to 'Show student', profile_path(u), {class: 'btn btn-primary btn-xs'} %>
                 <hr>
             <% end %>
         <% end %>
