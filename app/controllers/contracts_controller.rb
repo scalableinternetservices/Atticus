@@ -5,12 +5,15 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all
+    if stale?([Contract.all, Comment.all, User.all])
+      @contracts = Contract.all
+    end
   end
 
   # GET /contracts/1
   # GET /contracts/1.json
   def show
+      fresh_when([@contract, @contract.skill_tags, @contract.comments])
   end
 
   # GET /contracts/new
