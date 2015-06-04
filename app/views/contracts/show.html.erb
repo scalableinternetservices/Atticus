@@ -69,10 +69,14 @@
 <% elsif (current_user.id == @contract.worker && @contract.progress == true && @contract.done == false) %>
     <%= link_to 'Mark finished!', finish_contract_path, {class: 'btn btn-primary btn-xs'}%> 
 <% end %>
+<% if current_user.is_student %>
+	  <%= link_to 'Accept', add_contract_path, class:"btn btn-default btn-lg" %>
+  <% end %>
 <hr>
 <h1 class="page-header">Similar Contracts</h1>
 <div class="container">
         <div class="row">
+            <% cache(cache_key_for_contracts) do %>
             <% @contract.skill_tags.each do |similar| %>
                 <% similar.contracts[0..3].each do |c| %>
                    <% if c != @contract %>
@@ -91,6 +95,7 @@
                     <% end %>
                 <% end %>
             <% end %>
+        <% end %>
         </div>
 </div>
 <hr>

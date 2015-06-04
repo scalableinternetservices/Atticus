@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :contracts
+  has_many :notifications_as_sender, :class_name => 'Notification', :foreign_key => 'sender_id'
+  has_many :notifications_as_recipient, :class_name => 'Notification', :foreign_key => 'recipient_id'
   has_and_belongs_to_many :skill_tags
   has_and_belongs_to_many :industry_tags
   attr_accessor :skill_tag_name

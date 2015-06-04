@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :notifications
   resources :comments
   get 'contracts/:id/add' => "contracts#add", as: :add_contract
   get 'contracts/:id/destroy' => "contracts#destroy", as: :destroy_contract

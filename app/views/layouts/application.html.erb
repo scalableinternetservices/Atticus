@@ -3,6 +3,7 @@
 <head>
   <title>Atticus</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "notification" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -27,6 +28,16 @@
 	<% else %>
 	  <li class="navbar-link"><a href="/">Welcome <%= current_user.corporation %> corporation!</a></li>
 	<% end %>
+    <li>
+      <a href="/notifications" style="padding: 0px">
+      <button class="btn btn-default btn-lg btn-link" style="font-size:20px;">
+              <span class="glyphicon glyphicon-comment"></span>
+                </button>
+                <% if current_user.has_notifications %>
+                  <span class="badge badge-notify">!</span>
+                <% end %>
+      </a>
+    </li>
 	<li><%= link_to 'Show Profile', profile_path(current_user) %></li>
 	<li><%= link_to 'Edit Account', edit_user_registration_path %></li>
 	<li><%= link_to 'Edit Profile', edit_profile_path(current_user) %></li>

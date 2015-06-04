@@ -4,6 +4,6 @@ module ContractsHelper
   end
 
   def cache_key_for_contract_row(contract)
-    "contract-#{contract.id}-#{contract.updated_at}-#{contract.comments.count}"
+    "contract-#{contract.id}-#{contract.updated_at}"
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520204353) do
+ActiveRecord::Schema.define(version: 20150604065349) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "message",     limit: 65535
@@ -68,6 +68,21 @@ ActiveRecord::Schema.define(version: 20150520204353) do
     t.integer "user_id",         limit: 4, null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "subject",      limit: 255
+    t.string   "body",         limit: 255
+    t.boolean  "read",         limit: 1,   default: false
+    t.integer  "sender_id",    limit: 4
+    t.integer  "recipient_id", limit: 4
+    t.integer  "contract_id",  limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "notifications", ["contract_id"], name: "index_notifications_on_contract_id", using: :btree
+  add_index "notifications", ["recipient_id"], name: "index_notifications_on_recipient_id", using: :btree
+  add_index "notifications", ["sender_id"], name: "index_notifications_on_sender_id", using: :btree
+
   create_table "skill_tags", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -80,13 +95,14 @@ ActiveRecord::Schema.define(version: 20150520204353) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",   null: false
-    t.string   "encrypted_password",     limit: 255, default: "",   null: false
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.boolean  "is_student",             limit: 1,   default: true
+    t.boolean  "has_notifications",      limit: 1,   default: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,    null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -96,7 +112,7 @@ ActiveRecord::Schema.define(version: 20150520204353) do
     t.string   "personal_website",       limit: 255
     t.string   "company_website",        limit: 255
     t.float    "rating_value",           limit: 24,  default: 5.0
-    t.integer  "rating_count",           limit: 4,   default: 1,    null: false
+    t.integer  "rating_count",           limit: 4,   default: 1,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name",             limit: 255
