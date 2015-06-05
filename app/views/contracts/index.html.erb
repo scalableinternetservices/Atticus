@@ -2,6 +2,7 @@
 <ul class="contracts-list">
 <% cache(cache_key_for_contracts) do %>
   <% @contracts.each do |contract| %>
+      <% if !contract.approved %>
   <% cache(cache_key_for_contract_row(contract)) do %>
   <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
     <div class="contract-box">
@@ -16,6 +17,7 @@
       </div>
     </div>
   </li>
+  <% end %>
   <% end %>
   <% end %>
 <% end %>
