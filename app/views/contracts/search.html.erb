@@ -6,7 +6,7 @@
 <h2>Found <%= pluralize @contracts.total_count , "contract" %>!</h2>
 <hr/>
 <ul class="contracts-list finished">
-    <%= paginate @contracts %>
+    <%= paginate @contracts, :theme => 'twitter-bootstrap-3' %>
     <% @contracts.each do |contract| %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
         <div class="contract-box">
