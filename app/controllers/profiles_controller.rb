@@ -37,7 +37,7 @@ class ProfilesController < ApplicationController
           @user.skill_tags << skill
           @user.save!
         end
-        end
+      end
     else
       if (!params[:skill_tag_name].nil?)
         result = params[:industry_tag_name].split(",")
@@ -77,11 +77,14 @@ class ProfilesController < ApplicationController
   end
 
   def search
-      @users = User.all
                 if params[:search]
-                          @users = User.search(params[:search]).order("created_at DESC")
+                          @users = User.search(params[:search]).page(params[:id]).per(15)
+
                 else
-                          @users = User.all.order("created_at DESC")
+                          @users = User.all.order("created_at DESC").page(params[:id]).per(15)
+                end
+                if current_user.is_student
+                  @users = @users.select {|user| !user.is_student}
                 end
   end
   private

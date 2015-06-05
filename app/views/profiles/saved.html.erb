@@ -3,7 +3,7 @@
 
     <ul class="nav nav-pills">
         <li><a href="/profiles">Finished Contracts</a></li>
-        <li><a href="/profiles/progress">Progressing Contracts</a></li>
+        <li><a href="/profiles/progress">Live Contracts</a></li>
         <li class="active"><a href="#">Saved Contracts</a></li>
     </ul>
     <ul class="contract-list saved">
@@ -41,6 +41,7 @@
                     <p class="contractdescription"><strong>Description:</strong> <%=p.description%></p>
                     <p> There are currently <%= p.users.size-1 %> interested students.</p>
                     <%= link_to "See all users", contract_path(p) ,class:"btn btn-default btn-xs"%>
+                    <%= link_to "Delete Contract", destroy_contract_path(p) ,class:"btn btn-default btn-xs"%>
                 <% end %>
             <%end%>
         </div>  

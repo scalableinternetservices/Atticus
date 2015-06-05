@@ -3,10 +3,12 @@
     <%= text_field_tag :search, params[:search], placeholder: "Search Contracts" %>
     <%= submit_tag "Search" %>
 <% end %>
-<h2>Found <%= pluralize @contracts.count , "contract" %>!</h2>
+<h2>Found <%= pluralize @contracts.total_count , "contract" %>!</h2>
 <hr/>
 <ul class="contracts-list finished">
+    <%= paginate @contracts, :theme => 'twitter-bootstrap-3' %>
     <% @contracts.each do |contract| %>
+        <% cache(cache_key_for_contract_row(contract)) do %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
         <div class="contract-box">
             <div class="contract-img">
@@ -17,10 +19,10 @@
                 <div class="contract-description">
                     <h4><%= truncate(strip_tags(contract.description), length: 80) %></h4>
                     <%= link_to 'Show', contract, class:"btn btn-default btn-xs"%>
-	  <%= link_to 'Accept', add_contract_path(contract), class:"btn btn-default btn-xs" %>
                 </div>
             </div>
         </div>
         </li>
+    <% end %>
     <% end %>
 </ul>

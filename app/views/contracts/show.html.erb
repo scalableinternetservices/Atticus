@@ -48,6 +48,7 @@
 
 <% if (current_user.id == @contract.owner) %>
     <%= link_to 'Edit this contract', edit_contract_path, {class: 'btn btn-primary btn-xs'} %>
+    <%= link_to 'Delete this contract', destroy_contract_path, {class: 'btn btn-primary btn-xs'} %>
     <% if @contract.progress == false %>
         <hr style="    padding: 0;
         border: none;
@@ -58,6 +59,7 @@
             <% if u.is_student %>
                 <p><strong><%= u.first_name %></strong> is interested in this contract!</p>
                 <%= link_to 'Assign student', start_contract_path(:worker => u.id), {class: 'btn btn-primary btn-xs'} %>
+                <%= link_to 'Show student', profile_path(u), {class: 'btn btn-primary btn-xs'} %>
                 <hr>
             <% end %>
         <% end %>
@@ -67,10 +69,14 @@
 <% elsif (current_user.id == @contract.worker && @contract.progress == true && @contract.done == false) %>
     <%= link_to 'Mark finished!', finish_contract_path, {class: 'btn btn-primary btn-xs'}%> 
 <% end %>
+<% if current_user.is_student %>
+	  <%= link_to 'Accept', add_contract_path, class:"btn btn-default btn-lg" %>
+  <% end %>
 <hr>
 <h1 class="page-header">Similar Contracts</h1>
 <div class="container">
         <div class="row">
+	  <% cache(cache_key_for_contracts) do %>
             <% @contract.skill_tags.includes(:contracts).limit(4).each do |similar| %>
                 <% similar.contracts[0..3].each do |c| %>
                    <% if c != @contract %>
@@ -89,6 +95,7 @@
                     <% end %>
                 <% end %>
             <% end %>
+        <% end %>
         </div>
 </div>
 <hr>

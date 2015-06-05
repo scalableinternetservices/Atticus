@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+#
 gem 'rails', '4.2.1'
 
 # Use mysql as the database for Active Record
@@ -49,6 +50,13 @@ gem 'fog'
 
 #secrets!!!!
 gem 'figaro'
+
+#pagination
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+
+# For seeding
+gem 'yaml_db'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
