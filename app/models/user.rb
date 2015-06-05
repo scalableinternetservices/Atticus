@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
       def self.search(query)
               # where(:title, query) -> This would return an exact match of the query
-         where("first_name like ? OR last_name like ? OR school like ? OR corporation like ? OR profile like ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%") 
+         where("first_name like ? OR last_name like ? OR school like ? OR corporation like ? OR profile like ?", "#{query}%", "#{query}%", "#{query}%", "#{query}%", "#{query}%") 
       end
 
 end

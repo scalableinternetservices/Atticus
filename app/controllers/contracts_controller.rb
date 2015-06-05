@@ -16,7 +16,7 @@ class ContractsController < ApplicationController
 
   # GET /contracts/new
   def new
-    
+    @contract = Contract.new
   end
 
   # GET /contracts/1/edit
@@ -27,6 +27,7 @@ class ContractsController < ApplicationController
   # POST /contracts.json
   def create
     # Only companies can create contracts
+
     if !current_user.is_student
       @contract = Contract.new(contract_params)
       @contract.owner = current_user.id
