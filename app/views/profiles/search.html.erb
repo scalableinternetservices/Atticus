@@ -8,7 +8,6 @@
 <% if current_user.is_student %>
 <ul class="contracts-list finished">
     <%= paginate @users, :theme => 'twitter-bootstrap-3' %>
-    <% cache(cache_key_for_users) do %>
     <% @users.each do |user| %>
         <% cache(cache_key_for_user_row(user)) do %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
@@ -27,7 +26,6 @@
             </div>
         </div>
         </li>
-    <% end %>
     <% end %>
     <% end %>
 </ul>
