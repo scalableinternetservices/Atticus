@@ -5,8 +5,6 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all
-   
     if stale?([Contract.all, Comment.all, User.all])
       @contracts = Contract.all.page(params[:page]).per(15)
     end
