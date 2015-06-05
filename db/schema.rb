@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520204353) do
+ActiveRecord::Schema.define(version: 20150603071214) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "message",     limit: 65535

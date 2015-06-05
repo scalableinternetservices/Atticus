@@ -6,6 +6,7 @@ class ContractsController < ApplicationController
   # GET /contracts.json
   def index
     @contracts = Contract.all
+   
   end
 
   # GET /contracts/1
@@ -15,7 +16,7 @@ class ContractsController < ApplicationController
 
   # GET /contracts/new
   def new
-    @contract = Contract.new
+    
   end
 
   # GET /contracts/1/edit
@@ -59,6 +60,14 @@ class ContractsController < ApplicationController
   # PATCH/PUT /contracts/1
   # PATCH/PUT /contracts/1.json
   def update
+
+     result = params[:skill_tag_name].split(",")
+        result.each do |k|
+          skill = SkillTag.find_by_name(k)
+          @contract.skill_tags << skill
+          @contract.save!
+        end
+
     respond_to do |format|
       if @contract.update(contract_params)
         format.html { redirect_to @contract, notice: 'Contract was successfully updated.' }

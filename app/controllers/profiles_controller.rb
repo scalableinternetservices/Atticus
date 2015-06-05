@@ -16,7 +16,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:skill_tags,:industry_tags).find(params[:id])
+    
   end
 
   # GET /profiles/new

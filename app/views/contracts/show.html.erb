@@ -71,7 +71,7 @@
 <h1 class="page-header">Similar Contracts</h1>
 <div class="container">
         <div class="row">
-            <% @contract.skill_tags.each do |similar| %>
+            <% @contract.skill_tags.includes(:contracts).limit(4).each do |similar| %>
                 <% similar.contracts[0..3].each do |c| %>
                    <% if c != @contract %>
             <div class="col-sm-3">
