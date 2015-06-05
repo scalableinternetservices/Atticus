@@ -479,7 +479,7 @@ User.delete_all
 
 
 
-for i in 1..9000
+for i in 1..90000
 #  if (User.count<9001)
     User.create(
                 
@@ -497,7 +497,7 @@ for i in 1..9000
  # end
 end
 
-for i in 9001..10000
+for i in 90001..100000
  # if (User.count<10000)
     User.create(
                 id: i,
@@ -515,7 +515,7 @@ for i in 9001..10000
  # end
 end
 
-  for i in 9001..10000
+  for i in 90001..100000
   #  if (Contract.count < 5001)
       contract = Contract.create(
                                  
@@ -547,6 +547,7 @@ industry_tags.each do |t|
 end
 
 #add skills
+=begin
 for i in 1..9000
   num = 2
   user = User.find(i)
@@ -578,3 +579,4 @@ for i in 2..988
     contract.save!
   end
 end
+=end
