@@ -47,6 +47,7 @@
                 </div>
             </div>            
             <div class="col-xs-12 divider text-center">
+                <% if current_user.is_student %>
                 <div class="bottom">
                     <a class="btn btn-primary btn-twitter btn-sm" href="https://github.com/<%= @user.github_url %>">
                         <i class="fa fa-github"></i>
@@ -61,6 +62,16 @@
                     </a>
                 
                 </div>
+                <% else %>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="https://www.linkedin.com/<%= @user.linkedin_url %>">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                        href="http://www.<%= @user.personal_website %>">
+                        <i class="glyphicon glyphicon-globe"></i>
+                    </a>
+                <% end %>
                 
             </div>
     	 </div>                 

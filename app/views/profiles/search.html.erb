@@ -1,18 +1,53 @@
-<h1 class="page-header">Searh Users</h1>
+<% if current_user.is_student %>
+<h1 class="page-header">Search Companies</h1>
+<% else %>
+<h1 class="page-header">Search Users</h1>
+<% end %>
 <%= form_tag(search_users_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Contracts" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
     <%= submit_tag "Search" %>
 <% end %>
 <h2>Found <%= pluralize @users.total_count , "users" %>!</h2>
 <hr/>
+<% if current_user.is_student %>
 <ul class="contracts-list finished">
     <%= paginate @users, :theme => 'twitter-bootstrap-3' %>
+    <% cache(cache_key_for_users) do %>
     <% @users.each do |user| %>
+        <% cache(cache_key_for_user_row(user)) do %>
         <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
         <div class="contract-box">
+            <div class="row">
+                <div class="col-sm-2">
             <div class="contract-img">
                <%= image_tag(user.avatar.url(:thumb)) %>             </div>
-            <div class="contract-text">
+            </div>
+            <div class="col-sm-10 contract-text">
+                <h4 class="contract-title"><%= user.corporation %></h4>
+                <div class="contract-description">
+                    <h4><%= truncate(strip_tags(user.profile), length: 80) %></h4>
+                    <%= link_to 'Show', profile_path(user), class:"btn btn-default btn-xs"%>
+                </div>
+            </div>
+        </div>
+        </li>
+    <% end %>
+    <% end %>
+    <% end %>
+</ul>
+<% else %>
+<ul class="contracts-list finished">
+    <% cache(cache_key_for_users) do %>
+    <% @users.each do |user| %>
+        <% cache(cache_key_for_user_row(user)) do %>
+        <li class="contract-li <%= cycle('contract-odd', 'contract-even') %>">
+        <div class="contract-box">
+            <div class="row">
+                <div class="col-sm-2">
+            <div class="contract-img">
+               <%= image_tag(user.avatar.url(:thumb)) %>             </div>
+            </div>
+            <div class="col-sm-10 contract-text">
                 <h4 class="contract-title"><%= user.first_name %> <%= user.last_name %></h4>
                 <div class="contract-description">
                     <h4><%= truncate(strip_tags(user.profile), length: 80) %></h4>
@@ -22,4 +57,7 @@
         </div>
         </li>
     <% end %>
+    <% end %>
+    <% end %>
 </ul>
+<% end %>

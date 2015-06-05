@@ -5,12 +5,15 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all.page(params[:page]).per(15)
+    if stale?([Contract.all, Comment.all, User.all])
+      @contracts = Contract.all
+    end
   end
 
   # GET /contracts/1
   # GET /contracts/1.json
   def show
+      fresh_when([@contract, @contract.skill_tags, @contract.comments, @contract.users])
   end
 
   # GET /contracts/new
@@ -78,8 +81,21 @@ class ContractsController < ApplicationController
 		 company = User.find(contract.owner)
 		 #send email to company to notify pending
 		 #Larrymailer.contract_pending(current_user, company, contract).deliver_now
+      #   company.has_notifications = true
+      #   notification = Notification.new
+      #   notification.sender = current_user
+      #   notification.recipient = company
+      #   notification.subject = "#{current_user.first_name} has added your contract!"
+      #   notification.contract = contract
+      #   notification.body = "#{current_user.first_name} has signaled interest in your contract #{contract.title}."
+      #   company.notifications_as_recipient << notification
+      #   company.save!
+      #   current_user.notifications_as_sender << notification
+      #   contract.notifications << notification
+      #   contract.save!
                  current_user.contracts << contract
                  current_user.save!
+      #           notification.save!
                  format.html { redirect_to contract, notice: 'Contract was successfully added to profile.' }
                  format.json {render :show, status: :ok, location: @contract }
              else
@@ -97,6 +113,20 @@ class ContractsController < ApplicationController
     worker = User.find(@contract.worker)
     #send email to user to note contract accepted
     #Larrymailer.contract_accepted(worker, @contract).deliver_now
+         worker.has_notifications = true
+         notification = Notification.new
+         notification.sender = current_user
+         notification.recipient = worker
+         notification.subject = "#{current_user.corporation} has designated you for #{@contract.title}!"
+         notification.contract = @contract
+         notification.body = "#{current_user.corporation} has assigned you to work for #{@contract.title}!"
+         worker.notifications_as_recipient << notification
+         worker.save!
+         current_user.notifications_as_sender << notification
+         @contract.notifications << notification
+         @contract.save!
+                 current_user.save!
+                 notification.save!
     @contract.progress = true
     @contract.save!
     respond_to do |format|
@@ -108,6 +138,23 @@ class ContractsController < ApplicationController
   # Drop worker/student from contract
   def reset
     @contract = Contract.find(params[:id])
+    worker = User.find(@contract.worker)
+    #send email to user to note contract accepted
+    #Larrymailer.contract_accepted(worker, @contract).deliver_now
+         worker.has_notifications = true
+         notification = Notification.new
+         notification.sender = current_user
+         notification.recipient = worker
+         notification.subject = "#{current_user.corporation} has dropped you from #{@contract.title}!"
+         notification.contract = @contract
+         notification.body = "#{current_user.corporation} has dropped you to from for #{@contract.title}! You can contact him at #{current_user.email} "
+         worker.notifications_as_recipient << notification
+         worker.save!
+         current_user.notifications_as_sender << notification
+         @contract.notifications << notification
+         @contract.save!
+                 current_user.save!
+                 notification.save!
     @contract.progress = false
     @contract.worker = 0;
     @contract.save!
@@ -123,6 +170,20 @@ class ContractsController < ApplicationController
     company = User.find(@contract.owner)
     #email company that user has finished work
     #Larrymailer.contract_finished(current_user, company, @contract).deliver_now
+         company.has_notifications = true
+         notification = Notification.new
+         notification.sender = current_user
+         notification.recipient = company
+         notification.subject = "#{current_user.first_name} has finished your contract!"
+         notification.contract = @contract
+         notification.body = "#{current_user.first_name} has marked the contract #{@contract.title} done. Please approve it on the contract page."
+         company.notifications_as_recipient << notification
+         company.save!
+         current_user.notifications_as_sender << notification
+         @contract.notifications << notification
+         @contract.save!
+                 current_user.save!
+                 notification.save!
     @contract.done = true
     @contract.save!
     respond_to do |format|
@@ -137,6 +198,20 @@ class ContractsController < ApplicationController
     user = User.find(@contract.worker)
     #send worker email that he will get payed for his approved work
     #Larrymailer.contract_approved(user, @contract).deliver_now
+         user.has_notifications = true
+         notification = Notification.new
+         notification.sender = current_user
+         notification.recipient = user
+         notification.subject = "#{current_user.corporation} has approved your work for  #{@contract.title}!"
+         notification.contract = @contract
+         notification.body = "#{current_user.corporation} has approved your work for #{@contract.title}! Your payment will be deposited shortly."
+         user.notifications_as_recipient << notification
+         user.save!
+         current_user.notifications_as_sender << notification
+         @contract.notifications << notification
+         @contract.save!
+                 current_user.save!
+                 notification.save!
     @contract.approved = true
     @contract.save!
     respond_to do |format|

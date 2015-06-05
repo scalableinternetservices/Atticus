@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Notifications</h2>
+    <hr />
+    <div class="row">
+        <div class="col-sm-10 col-md-10">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <div class="list-group">
+                        <% @notifications.reverse.each do |notification| %>
+                            <a href="/contracts/<%= notification.contract.id %>" class="list-group-item">
+                                    <span class="name" style="min-width: 120px;
+                                    display: inline-block;"> <span class=""><%= notification.subject %></span>
+                                <span class="text-muted" style="font-size: 11px;"><%= notification.body %></span><span class="pull-right"></span>
+                       </a>
+                    <% end %>
+                    </div>
+                </div>
+                
+        </div>
+    </div>
+</div>
