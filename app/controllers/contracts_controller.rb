@@ -5,7 +5,7 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all.page(params[:page]).per(15)
+     @contracts = Contract.all.order("created_at DESC").page(params[:page]).per(15)
   end
 
   # GET /contracts/1

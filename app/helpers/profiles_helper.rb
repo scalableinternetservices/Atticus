@@ -3,6 +3,6 @@ module ProfilesHelper
       "user-#{user.id}-#{user.updated_at}"
     end
     def cache_key_for_users
-      "users-#{User.maximum(:updated_at)}"
+      "users-#{User.maximum(:updated_at)}-#{User.count}"
     end
 end

@@ -19,7 +19,11 @@
                <%= image_tag(user.avatar.url(:thumb)) %>             </div>
             </div>
             <div class="col-sm-10 contract-text">
+                <% if user.is_student %>
+                <h4 class="contract-title"><%= user.first_name %> <%= user.last_name %></h4>
+                <% else %>
                 <h4 class="contract-title"><%= user.corporation %></h4>
+            <% end %>
                 <div class="contract-description">
                     <h4><%= truncate(strip_tags(user.profile), length: 80) %></h4>
                     <%= link_to 'Show', profile_path(user), class:"btn btn-default btn-xs"%>
@@ -33,6 +37,7 @@
 </ul>
 <% else %>
 <ul class="contracts-list finished">
+    <%= paginate @users, :theme => 'twitter-bootstrap-3' %>
     <% cache(cache_key_for_users) do %>
     <% @users.each do |user| %>
         <% cache(cache_key_for_user_row(user)) do %>
@@ -44,7 +49,11 @@
                <%= image_tag(user.avatar.url(:thumb)) %>             </div>
             </div>
             <div class="col-sm-10 contract-text">
+                <% if user.is_student %>
                 <h4 class="contract-title"><%= user.first_name %> <%= user.last_name %></h4>
+                <% else %>
+                <h4 class="contract-title"><%= user.corporation %></h4>
+            <% end %>
                 <div class="contract-description">
                     <h4><%= truncate(strip_tags(user.profile), length: 80) %></h4>
                     <%= link_to 'Show', profile_path(user), class:"btn btn-default btn-xs"%>

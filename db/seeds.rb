@@ -8,33 +8,33 @@
 
 
 first_names = Array["Liam","Emma","Noah","Olivia","Mason","Sophia",
-"Ethan","Ava",	    		
-	"Logan",	"Isabella",	    		
-	"Lucas",	"Mia",  		
-	"Jackson", "Charlotte",	    		
-	"Oliver", "Emily",	    		
-	"Jacob",	"Amelia",	    		
-	"Aiden",	"Madison",	    		
-	"Elijah",	"Abigail",	    		
-	"James",	"Harper"	,
-	"Luke",	"Ella"	    	,	
-	"Alexander",	"Lily"	 ,   		
-	"Benjamin",	"Chloe"	  ,  		
-	"Jack",	"Avery"	    	,	
-	"Michael",	"Evelyn",	    		
-	"William",	"Sofia"	 ,   		
-	"Henry",	"Audrey"	  ,  		
-	"Gabriel",	"Zoey"	   , 		
-	"Daniel",	"Ellie"	    ,		
-	"Caleb",	"Aubrey"	    ,		
-	"Carter",	"Grace"	    ,		
-	"Owen",	"Hannah"	    ,		
-	"Wyatt",	"Zoe"	    	,	
-	"Matthew",	"Nora"	 ,   		
-	"Jayden",	"Aria"	  ,  		
-	"Ryan",	"Elizabeth"	   , 		
-	"Isaac",	"Scarlett"	    ,		
-	"Nathan",	"Addison",	    		
+"Ethan","Ava",          
+  "Logan",  "Isabella",         
+  "Lucas",  "Mia",      
+  "Jackson", "Charlotte",         
+  "Oliver", "Emily",          
+  "Jacob",  "Amelia",         
+  "Aiden",  "Madison",          
+  "Elijah", "Abigail",          
+  "James",  "Harper"  ,
+  "Luke", "Ella"        , 
+  "Alexander",  "Lily"   ,      
+  "Benjamin", "Chloe"   ,     
+  "Jack", "Avery"       , 
+  "Michael",  "Evelyn",         
+  "William",  "Sofia"  ,      
+  "Henry",  "Audrey"    ,     
+  "Gabriel",  "Zoey"     ,    
+  "Daniel", "Ellie"     ,   
+  "Caleb",  "Aubrey"      ,   
+  "Carter", "Grace"     ,   
+  "Owen", "Hannah"      ,   
+  "Wyatt",  "Zoe"       , 
+  "Matthew",  "Nora"   ,      
+  "Jayden", "Aria"    ,     
+  "Ryan", "Elizabeth"    ,    
+  "Isaac",  "Scarlett"      ,   
+  "Nathan", "Addison",          
 ]
 
 last_names = Array["SMITH",
@@ -479,7 +479,7 @@ User.delete_all
 
 
 
-for i in 1..90000
+for i in 1..9000
 #  if (User.count<9001)
     User.create(
                 
@@ -497,7 +497,7 @@ for i in 1..90000
  # end
 end
 
-for i in 90001..100000
+for i in 9001..10000
  # if (User.count<10000)
     User.create(
                 id: i,
@@ -515,12 +515,12 @@ for i in 90001..100000
  # end
 end
 
-  for i in 90001..100000
+  for i in 9001..10000
   #  if (Contract.count < 5001)
       contract = Contract.create(
                                  
                                title: 'Test' + i.to_s + ' Contract',
-                               company: "UCLA",
+                               company: "Symantec",
                                description: "TESTING THIS great description. This is kind of long so a few more lines should be good",
                                pay: 2343,
                                deadline: 'May 23rd 2016',
@@ -547,7 +547,6 @@ industry_tags.each do |t|
 end
 
 #add skills
-=begin
 for i in 1..9000
   num = 2
   user = User.find(i)
@@ -579,4 +578,3 @@ for i in 2..988
     contract.save!
   end
 end
-=end
