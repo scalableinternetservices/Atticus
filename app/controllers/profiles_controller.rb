@@ -39,7 +39,7 @@ class ProfilesController < ApplicationController
         end
       end
     else
-      if (!params[:skill_tag_name].nil?)
+      if (!params[:industry_tag_name].nil?)
         result = params[:industry_tag_name].split(",")
         result.each do |k|
           industry = IndustryTag.find_by_name(k)

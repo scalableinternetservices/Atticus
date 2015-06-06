@@ -470,7 +470,7 @@ industry_tags = Array["Abortion Policy/Anti-Abortion",
 "Waste Management",
 "Wine, Beer & Liquor",
 "Women's Issues"]
-
+=begin
 Contract.delete_all
 
 #for i in (0..100)
@@ -535,7 +535,7 @@ end
       user.save!
  #   end
   end
- 
+=end 
 
 
 skill_tags.each do |t|
