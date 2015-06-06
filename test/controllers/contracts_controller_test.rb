@@ -4,7 +4,6 @@ class ContractsControllerTest < ActionController::TestCase
   setup do
     @contract = contracts(:one)
     user = User.first
-    print "user is #{user}"
     sign_in User.first
   end
 
@@ -19,13 +18,6 @@ class ContractsControllerTest < ActionController::TestCase
      assert_response :success
    end
 
-#   test "should create contract" do
-#     assert_difference('Contract.count') do
-#       post :create, contract: { company: @contract.company, description: @contract.description, image_url: @contract.image_url, pay: @contract.pay, title: @contract.title }
-#     end
-#
-#     assert_redirected_to contract_path(assigns(:contract))
-#   end
 
    test "should show contract" do
      get :show, id: @contract
@@ -36,13 +28,4 @@ class ContractsControllerTest < ActionController::TestCase
      get :edit, id: @contract
      assert_response :success
    end
-
-
-#   test "should destroy contract" do
-#     assert_difference('Contract.count', -1) do
-##       delete :destroy, id: @contract
-##     end
-##
-#     assert_redirected_to contracts_path
-#   end
 end
